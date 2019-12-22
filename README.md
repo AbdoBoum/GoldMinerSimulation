@@ -1,0 +1,2 @@
+# GoldMinerSimulation
+SMA project
