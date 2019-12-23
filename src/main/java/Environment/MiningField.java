@@ -5,29 +5,22 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.stream.IntStream;
 
 public class MiningField {
 
     public static final int MAP_HEIGHT = 20;
     public static final int MAP_WIDTH = 20;
 
-    @Setter
-    @Getter
+    @Setter @Getter
     private int goldPieces;
-    @Getter
-    @Setter
+    @Getter @Setter
     private int obstacles;
-    @Getter
-    @Setter
+    @Getter @Setter
     private char[][] map;
 
     public MiningField() {
-        this.goldPieces = 30;
-        this.obstacles = 30;
-        map = new char[MAP_HEIGHT][MAP_WIDTH];
-        initMiningField();
+        this(30, 30);
     }
 
     public MiningField(int goldPieces, int obstacles) {
@@ -81,6 +74,14 @@ public class MiningField {
 
     @Override
     public String toString() {
-        return super.toString();
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < MAP_WIDTH; i++) {
+            char[] line = map[i];
+            IntStream.range(0, line.length)
+                    .mapToObj(c -> line[c])
+                    .forEach(builder::append);
+            builder.append('\n');
+        }
+        return builder.toString();
     }
 }

@@ -13,9 +13,7 @@ public class Miner {
     private Position position;
 
     public Miner() {
-        this.id = UUID.randomUUID().toString();
-        this.free = true;
-        this.position = new Position() ;
+        this(UUID.randomUUID().toString(), true, new Position());
     }
 
     public void moveUp() {
