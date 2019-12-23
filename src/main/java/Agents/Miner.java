@@ -1,15 +1,41 @@
 package Agents;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import Utils.Position;
+import lombok.*;
 
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor
+import java.util.UUID;
+
+@Getter @Setter @AllArgsConstructor
 public class Miner {
 
-    private long id;
+    private String id;
     private boolean free;
-    //Coordinates position;
+    private Position position;
 
+    public Miner() {
+        this.id = UUID.randomUUID().toString();
+        this.free = true;
+        this.position = new Position() ;
+    }
+
+    public void moveUp() {
+
+    }
+
+    public void moveDown() {
+
+    }
+
+    public void moveLeft() {
+
+    }
+
+    public void moveRight() {
+
+    }
+
+    @Override
+    public String toString() {
+        return "---> Miner: " + this.id + " \n---> Position: " + position.toString();
+    }
 }

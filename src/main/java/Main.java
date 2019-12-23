@@ -1,9 +1,8 @@
 import Agents.Miner;
+import Environment.MiningField;
 
 public class Main {
     public static void main(String[] args) {
-
-        var miner = new Miner(1L, true);
-
+        MiningField miningField = new MiningField();
     }
 }
