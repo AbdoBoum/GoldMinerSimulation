@@ -6,29 +6,29 @@ import lombok.*;
 import java.util.UUID;
 
 @Getter @Setter @AllArgsConstructor
-public class Miner {
+public class Miner implements Agent {
 
     private String id;
     private boolean free;
     private Position position;
+    private int score;
+    private boolean winner;
 
     public Miner() {
-        this(UUID.randomUUID().toString(), true, new Position());
+        this(UUID.randomUUID().toString(), true, new Position(), 0, false);
     }
 
     public void moveUp() {
 
     }
 
-    public void moveDown() {
+    @Override
+    public void broadcast(Type type, Object content) {
 
     }
 
-    public void moveLeft() {
-
-    }
-
-    public void moveRight() {
+    @Override
+    public void send(Agent to, Type type) {
 
     }
 
@@ -36,4 +36,5 @@ public class Miner {
     public String toString() {
         return "---> Miner: " + this.id + " \n---> Position: " + position.toString();
     }
+
 }
