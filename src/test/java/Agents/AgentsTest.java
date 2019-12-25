@@ -7,6 +7,7 @@ import static Agents.Agent.Type.ANNOUNCE_WINNER;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 public class AgentsTest {
@@ -25,7 +26,7 @@ public class AgentsTest {
     }
 
     @Test
-    public void CustomMinerCreation() {
+    public void customMinerCreation() {
         Miner miner = new Miner("124958", true, new Position(4, 4), 0, false);
         assertThat(miner.isFree(), equalTo(true));
         assertThat(miner.getPosition().getRow(), equalTo(4));
@@ -38,12 +39,7 @@ public class AgentsTest {
     public void defaultLeaderCreation() {
         Leader leader = new Leader();
         assertThat(leader.getMiners().size(), equalTo(4));
-        for (int i = 0; i < 4; i++) {
-            assertThat(((Miner)leader.getMiners().get(i)).isFree(), equalTo(true));
-            assertThat(((Miner)leader.getMiners().get(i)).getPosition().getRow(), equalTo(0));
-            assertThat(((Miner)leader.getMiners().get(i)).getPosition().getCol(), equalTo(0));
-            assertThat(((Miner)leader.getMiners().get(i)).getScore(), equalTo(0));
-        }
+        assertNotNull(leader.getMiners());
     }
 
     @Test
@@ -54,7 +50,11 @@ public class AgentsTest {
         assertEquals(1, miner.getScore());
 
         leader.broadcast(ANNOUNCE_WINNER, miner);
-        assertThat(miner.isWinner(), equalTo(true));
+        for (Agent agent: leader.getMiners()) {
+            if (agent.equals(miner)) assertThat(miner.isWinner(), equalTo(true));
+            else assertThat(((Miner)agent).isWinner(), equalTo(false));
+        }
+
     }
 
 }

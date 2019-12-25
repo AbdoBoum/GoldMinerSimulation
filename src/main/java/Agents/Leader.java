@@ -25,13 +25,17 @@ public class Leader implements Agent{
     public void broadcast(Type type, Object content) {
         switch (type) {
             case ANNOUNCE_WINNER:
-                Miner miner = (Miner) miners.stream()
-                        .filter(c -> c.equals((Miner)content))
-                        .findFirst()
-                        .get();
-                miner.setWinner(true);
+                updateWinner((Miner)content);
                 break;
             default: return;
+        }
+    }
+
+    private void updateWinner(Miner winner) {
+        for (Agent miner: miners) {
+            if (winner.equals(winner))
+                winner.setWinner(true);
+            ((Miner)miner).setWinner(false);
         }
     }
 
