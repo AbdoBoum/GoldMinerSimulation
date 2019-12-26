@@ -1,25 +1,33 @@
 package Utils;
 
+import lombok.Getter;
 import org.apache.commons.math3.random.MersenneTwister;
 
 public class RandomGenerator {
 
-    private static MersenneTwister INSTANCE = null;
+    private static RandomGenerator instance = null;
 
-    public static MersenneTwister getInstance() {
-        if (INSTANCE == null) {
+    @Getter
+    private MersenneTwister mersenneTwister;
+
+    private RandomGenerator() {
+        mersenneTwister = new MersenneTwister();
+    }
+
+    public static RandomGenerator getInstance() {
+        if (instance == null) {
             synchronized (RandomGenerator.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = new MersenneTwister();
+                if (instance == null) {
+                    instance = new RandomGenerator();
                 }
             }
         }
-        return INSTANCE;
+        return instance;
     }
 
     public static int generateRandom(int maxValue) {
-        MersenneTwister mersenneTwister = RandomGenerator.getInstance();
-        return mersenneTwister.nextInt(maxValue);
+        RandomGenerator generator = RandomGenerator.getInstance();
+        return generator.getMersenneTwister().nextInt(maxValue);
     }
 
 }

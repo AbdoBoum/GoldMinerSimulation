@@ -4,7 +4,6 @@ import Environment.MiningField;
 import Utils.Position;
 import org.junit.Test;
 
-import static Agents.Agent.Type.ANNOUNCE_WINNER;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.junit.Assert.*;
@@ -46,9 +45,8 @@ public class AgentsTest {
         Leader leader = new Leader();
         Miner miner = leader.getMinerByIndex(0);
         leader.updateScore(miner);
+        assertEquals(leader.getTeamMaxScore(), 1);
         assertEquals(1, miner.getScore());
-
-        leader.broadcast(ANNOUNCE_WINNER, miner);
         for (int i = 0; i < 4; i++) {
             if (leader.getMinerByIndex(i).equals(miner)) assertThat(leader.getMinerByIndex(i).isWinner(), equalTo(true));
             else assertThat(leader.getMinerByIndex(i).isWinner(), equalTo(false));

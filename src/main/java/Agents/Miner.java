@@ -31,6 +31,17 @@ public class Miner implements Agent {
 
     }
 
+    public void pickGold(MiningField field) {
+      this.free = false;
+      field.freePosition(position);
+      this.direction = new Position(); //default position is the depot location
+    }
+
+    public void dropGold(Leader leader) {
+        this.free = true;
+        send(leader, GOLD_DROPPED);
+    }
+
     @Override
     public void send(Agent to, Type type) {
         switch(type) {
@@ -48,15 +59,5 @@ public class Miner implements Agent {
         return "---> Miner: " + this.id + " \n---> Position: " + position.toString();
     }
 
-    public void pickGold(MiningField field) {
-      this.free = false;
-      field.freePosition(position);
-      this.direction = new Position(); //default position is the depot location
-    }
-
-    public void dropGold(Leader leader) {
-        this.free = true;
-        send(leader, GOLD_DROPPED);
-    }
 
 }

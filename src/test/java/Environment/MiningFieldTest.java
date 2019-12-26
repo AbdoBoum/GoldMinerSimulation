@@ -1,5 +1,6 @@
 package Environment;
 
+import Agents.Leader;
 import org.junit.Test;
 
 import java.util.stream.IntStream;
@@ -17,23 +18,23 @@ public class MiningFieldTest {
         assertThat(miningField.getGoldPieces(), equalTo(30));
         assertThat(miningField.getObstacles(), equalTo(30));
         assertNotNull(miningField.getMap());
+        assertNotNull(miningField.getOwner());
     }
 
     @Test
     public void customEnvironmentCreation() {
-        MiningField miningField = new MiningField(50, 20);
+        MiningField miningField = new MiningField(50, 20, new Leader());
         assertThat(miningField.getGoldPieces(), equalTo(50));
         assertThat(miningField.getObstacles(), equalTo(20));
-        assertNotNull(miningField.getMap());
         assertThat(miningField.getMap()[0].length, equalTo(MAP_HEIGHT));
     }
 
     @Test
-    public void countDefaultGoldPiecesAndObstacles() {
+    public void countGoldPiecesAndObstacles() {
         MiningField miningField = new MiningField();
         long goldPieces = 0L;
         long obstacles = 0L;
-
+        long miners = 0L;
         for (int i = 0; i < MAP_HEIGHT; ++i) {
             char[] line = miningField.getMap()[i];
             goldPieces += IntStream.range(0, line.length)
@@ -44,35 +45,17 @@ public class MiningFieldTest {
             obstacles += IntStream.range(0, line.length)
                     .mapToObj(c -> line[c])
                     .filter(x -> x == 'X')
+                    .count();
+
+            miners += IntStream.range(0, line.length)
+                    .mapToObj(c -> line[c])
+                    .filter(x -> x == 'M')
                     .count();
         }
 
         assertThat((int)goldPieces, equalTo(30));
         assertThat((int)obstacles, equalTo(30));
-
-    }
-
-    @Test
-    public void countCustomGoldPiecesAndObstacles() {
-        MiningField miningField = new MiningField(40, 40);
-        long goldPieces = 0L;
-        long obstacles = 0L;
-
-        for (int i = 0; i < MAP_HEIGHT; ++i) {
-            char[] line = miningField.getMap()[i];
-            goldPieces += IntStream.range(0, line.length)
-                    .mapToObj(c -> line[c])
-                    .filter(x -> x == 'O')
-                    .count();
-
-            obstacles += IntStream.range(0, line.length)
-                    .mapToObj(c -> line[c])
-                    .filter(x -> x == 'X')
-                    .count();
-        }
-
-        assertThat((int)goldPieces, equalTo(40));
-        assertThat((int)obstacles, equalTo(40));
+        assertThat((int)miners, equalTo(4));
 
     }
 
