@@ -7,6 +7,8 @@ import lombok.Setter;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
+import static Utils.RandomGenerator.generateRandom;
+
 public class MiningField {
 
     public static final int MAP_HEIGHT = 20;
@@ -45,7 +47,7 @@ public class MiningField {
     private void addGold(int goldPieces) {
         int i = 0;
         while (i < goldPieces) {
-            Position position = new Position(generateRandom(), generateRandom());
+            Position position = new Position(generateRandom(MAP_HEIGHT), generateRandom(MAP_WIDTH));
             if (isFree(position)) {
                 i++;
                 this.map[position.getRow()][position.getCol()] = 'O';
@@ -56,7 +58,7 @@ public class MiningField {
     private void addObstacles(int obstacles) {
         int i = 0;
         while (i < obstacles) {
-            Position position = new Position(generateRandom(), generateRandom());
+            Position position = new Position(generateRandom(MAP_HEIGHT), generateRandom(MAP_WIDTH));
             if (isFree(position)) {
                 i++;
                 this.map[position.getRow()][position.getCol()] = 'X';
@@ -70,10 +72,6 @@ public class MiningField {
 
     public void freePosition(Position position) {
         this.map[position.getRow()][position.getCol()] = '*';
-    }
-
-    private int generateRandom() {
-        return (int) (Math.random()*((MAP_HEIGHT - 1) + 1));
     }
 
     @Override
