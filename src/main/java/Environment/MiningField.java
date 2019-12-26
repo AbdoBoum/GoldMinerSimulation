@@ -1,5 +1,6 @@
 package Environment;
 
+import Agents.Leader;
 import Utils.Position;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,22 +21,34 @@ public class MiningField {
     private int obstacles;
     @Getter @Setter
     private char[][] map;
+    @Getter
+    private Leader owner;
 
     public MiningField() {
-        this(30, 30);
+        this(30, 30, new Leader());
     }
 
-    public MiningField(int goldPieces, int obstacles) {
+    public MiningField(int goldPieces, int obstacles, Leader owner) {
         this.obstacles = obstacles;
         this.goldPieces = goldPieces;
         map = new char[MAP_HEIGHT][MAP_WIDTH];
+        this.owner = owner;
         initMiningField();
     }
 
     private void initMiningField() {
         fillMiningField();
+        addMiners();
         addGold(goldPieces);
         addObstacles(obstacles);
+    }
+
+    private void addMiners() {
+        for (int i = 0; i < owner.getMiners().size(); i++) {
+            int col = owner.getMinerByIndex(i).getPosition().getCol();
+            int row = owner.getMinerByIndex(i).getPosition().getRow();
+            this.map[col][row] = 'M';
+        }
     }
 
     private void fillMiningField() {
