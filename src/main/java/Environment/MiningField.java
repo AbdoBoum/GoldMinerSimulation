@@ -64,8 +64,12 @@ public class MiningField {
         }
     }
 
-    private boolean isFree(Position position) {
+    public boolean isFree(Position position) {
         return this.map[position.getRow()][position.getCol()] == '*';
+    }
+
+    public void freePosition(Position position) {
+        this.map[position.getRow()][position.getCol()] = '*';
     }
 
     private int generateRandom() {

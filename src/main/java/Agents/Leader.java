@@ -17,6 +17,10 @@ public class Leader implements Agent{
         }
     }
 
+    public Miner getMinerByIndex(int index) {
+        return (Miner)this.miners.get(index);
+    }
+
     public void updateScore(Miner miner) {
         miner.setScore(miner.getScore() + 1);
     }
@@ -32,10 +36,10 @@ public class Leader implements Agent{
     }
 
     private void updateWinner(Miner winner) {
-        for (Agent miner: miners) {
-            if (winner.equals(winner))
+        for (int i = 0; i < NUM_MINERS; i++) {
+            if (getMinerByIndex(i).equals(winner))
                 winner.setWinner(true);
-            ((Miner)miner).setWinner(false);
+            else getMinerByIndex(i).setWinner(false);
         }
     }
 
