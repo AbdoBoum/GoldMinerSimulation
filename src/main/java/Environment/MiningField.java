@@ -14,6 +14,8 @@ public class MiningField {
 
     public static final int MAP_HEIGHT = 20;
     public static final int MAP_WIDTH = 20;
+    public static final int DEFAULT_OBSTACLES = 30;
+    public static final int DEFAULT_GOLD_PIECES = 30;
 
     @Setter @Getter
     private int goldPieces;
@@ -25,7 +27,7 @@ public class MiningField {
     private Leader owner;
 
     public MiningField() {
-        this(30, 30, new Leader());
+        this(DEFAULT_GOLD_PIECES, DEFAULT_OBSTACLES, new Leader());
     }
 
     public MiningField(int goldPieces, int obstacles, Leader owner) {
@@ -61,9 +63,9 @@ public class MiningField {
         int i = 0;
         while (i < goldPieces) {
             Position position = new Position(generateRandom(MAP_HEIGHT), generateRandom(MAP_WIDTH));
-            if (isFree(position)) {
+            if (isFreePosition(position)) {
                 i++;
-                this.map[position.getRow()][position.getCol()] = 'O';
+                this.map[position.getRow()][position.getCol()] = 'o';
             }
         }
     }
@@ -72,14 +74,14 @@ public class MiningField {
         int i = 0;
         while (i < obstacles) {
             Position position = new Position(generateRandom(MAP_HEIGHT), generateRandom(MAP_WIDTH));
-            if (isFree(position)) {
+            if (isFreePosition(position)) {
                 i++;
-                this.map[position.getRow()][position.getCol()] = 'X';
+                this.map[position.getRow()][position.getCol()] = '#';
             }
         }
     }
 
-    public boolean isFree(Position position) {
+    public boolean isFreePosition(Position position) {
         return this.map[position.getRow()][position.getCol()] == '*';
     }
 
