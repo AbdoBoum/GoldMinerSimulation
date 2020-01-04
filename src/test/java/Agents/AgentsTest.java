@@ -18,9 +18,6 @@ public class AgentsTest {
         assertThat(miner.getPosition().getCol(), equalTo(0));
         assertThat(miner.getScore(), equalTo(0));
         assertThat(miner.isWinner(), equalTo(false));
-        var p = miner.getPosition();
-        miner.moveUp();
-        assertThat(miner.getPosition().getRow(), lessThanOrEqualTo(p.getRow()));
     }
 
     @Test
@@ -51,23 +48,21 @@ public class AgentsTest {
             if (leader.getMinerByIndex(i).equals(miner)) assertThat(leader.getMinerByIndex(i).isWinner(), equalTo(true));
             else assertThat(leader.getMinerByIndex(i).isWinner(), equalTo(false));
         }
-
     }
 
     @Test
-    public void testGoldHandling() {
-        var leader = new Leader();
-        var miner = leader.getMinerByIndex(0);
+    public void goldSearchingAndHandling() {
+        var field = new MiningField();
+        var miner = field.getOwner().getMinerByIndex(0);
         miner.setPosition(new Position(4, 4));
-        MiningField field = new MiningField();
-        field.getMap()[4][4] = 'O';
-        miner.pickGold(field);
+        field.getMap()[0][1] = 'o';
+        miner.searchInPosition(field, new Position(0, 1));
         assertFalse(miner.isFree());
-        assertThat(miner.getDirection(), equalTo(new Position(0, 0)));
-        assertTrue(field.isFreePosition(new Position(4, 4)));
-        miner.dropGold(leader);
+        assertThat(miner.getDestination(), equalTo(new Position(0, 0)));
+        miner.dropGold(field);
         assertTrue(miner.isFree());
         assertThat(miner.getScore(), equalTo(1));
+        assertThat(miner.getPosition(), equalTo(new Position()));
     }
 
 }

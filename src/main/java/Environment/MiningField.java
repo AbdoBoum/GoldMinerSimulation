@@ -14,7 +14,7 @@ public class MiningField {
 
     public static final int MAP_HEIGHT = 20;
     public static final int MAP_WIDTH = 20;
-    public static final int DEFAULT_OBSTACLES = 30;
+    public static final int DEFAULT_OBSTACLES = 15;
     public static final int DEFAULT_GOLD_PIECES = 30;
 
     @Setter @Getter
@@ -47,20 +47,21 @@ public class MiningField {
 
     private void addMiners() {
         for (int i = 0; i < owner.getMiners().size(); i++) {
-            int col = owner.getMinerByIndex(i).getPosition().getCol();
-            int row = owner.getMinerByIndex(i).getPosition().getRow();
+            var col = owner.getMinerByIndex(i).getPosition().getCol();
+            var row = owner.getMinerByIndex(i).getPosition().getRow();
             this.map[col][row] = 'M';
         }
     }
 
     private void fillMiningField() {
-        for (int i = 0; i < MAP_HEIGHT; i++) {
+        for (var i = 0; i < MAP_HEIGHT; i++) {
             Arrays.fill(this.map[i], '*');
         }
+        map[0][0] = 'D'; // depot
     }
 
     private void addGold(int goldPieces) {
-        int i = 0;
+        var i = 0;
         while (i < goldPieces) {
             Position position = new Position(generateRandom(MAP_HEIGHT), generateRandom(MAP_WIDTH));
             if (isFreePosition(position)) {
@@ -71,7 +72,7 @@ public class MiningField {
     }
 
     private void addObstacles(int obstacles) {
-        int i = 0;
+        var i = 0;
         while (i < obstacles) {
             Position position = new Position(generateRandom(MAP_HEIGHT), generateRandom(MAP_WIDTH));
             if (isFreePosition(position)) {
@@ -85,15 +86,22 @@ public class MiningField {
         return this.map[position.getRow()][position.getCol()] == '*';
     }
 
+    public boolean isGold(Position position) { return this.map[position.getRow()][position.getCol()] == 'o'; }
+
     public void freePosition(Position position) {
         this.map[position.getRow()][position.getCol()] = '*';
+        this.goldPieces--;
+    }
+
+    public void setMinerInPosition(Position position) {
+        this.map[position.getRow()][position.getCol()] = 'M';
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < MAP_WIDTH; i++) {
-            char[] line = map[i];
+        var builder = new StringBuilder();
+        for (var i = 0; i < MAP_WIDTH; i++) {
+            var line = map[i];
             IntStream.range(0, line.length)
                     .mapToObj(c -> line[c])
                     .forEach(builder::append);

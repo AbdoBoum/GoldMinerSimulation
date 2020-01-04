@@ -1,12 +1,16 @@
 package Agents;
 
+import Environment.BfsShortestPath;
 import Environment.MiningField;
 import Utils.Position;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 
 import static Agents.Agent.Type.GOLD_DROPPED;
+import static Agents.Agent.Type.GOLD_FOUND;
 
 @Getter @Setter @AllArgsConstructor
 public class Miner implements Agent {
@@ -16,41 +20,65 @@ public class Miner implements Agent {
     private Position position;
     private int score;
     private boolean winner;
-    private Position direction;
+    private Position destination;
 
     public Miner() {
         this(UUID.randomUUID().toString(), true, new Position(), 0, false, new Position());
     }
 
-    public void moveUp() {
-
-    }
-
     @Override
     public void broadcast(Type type, Object content) {
+        throw new IllegalArgumentException("Miner can't broadcast");
+    }
 
+    public void searchInPosition(MiningField field, Position destination) {
+        var bfs = new BfsShortestPath(field.getMap());
+        var path = bfs.getPath(this.position, destination);
+        for (var i = 1; i < path.size(); i++) {
+            this.position = path.get(i);
+            if (field.isGold(this.position)) {
+                this.pickGold(field);
+                break;
+            }
+        }
     }
 
     public void pickGold(MiningField field) {
-      this.free = false;
-      field.freePosition(position);
-      this.direction = new Position(); //default position is the depot location
+        field.freePosition(this.position);
+        this.free = false;
+        backToDeposit(field);
     }
 
-    public void dropGold(Leader leader) {
+    private void backToDeposit(MiningField field) {
+        this.destination = new Position();
+        var bfs = new BfsShortestPath(field.getMap());
+        var path = bfs.getPath(this.position, destination);
+        for (var i = 1; i < path.size(); i++) {
+            this.position = path.get(i);
+            if (field.isGold(this.position)) {
+                this.send(GOLD_FOUND, field);
+            }
+        }
+        this.position = new Position();
+    }
+
+    public void dropGold(MiningField field) {
         this.free = true;
-        send(leader, GOLD_DROPPED);
+        send(GOLD_DROPPED, field);
     }
 
     @Override
-    public void send(Agent to, Type type) {
+    public void send(Type type, Object... content) {
+        MiningField field = (MiningField)content[0];
         switch(type) {
             case ANNOUNCE_WINNER:
                 break;
             case GOLD_DROPPED:
-                Leader leader = (Leader)to;
-                leader.updateScore(this);
+
+                field.getOwner().updateScore(this);
                 break;
+            case GOLD_FOUND:
+                field.getOwner().affectMinerToGold(field ,this.getPosition());
         }
     }
 
@@ -58,6 +86,5 @@ public class Miner implements Agent {
     public String toString() {
         return "---> Miner: " + this.id + " \n---> Position: " + position.toString();
     }
-
 
 }

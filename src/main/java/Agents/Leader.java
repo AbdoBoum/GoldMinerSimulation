@@ -1,5 +1,6 @@
 package Agents;
 
+import Environment.MiningField;
 import Utils.Position;
 import lombok.Getter;
 
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 import static Agents.Agent.Type.ANNOUNCE_WINNER;
+import static Agents.Agent.Type.GOLD_POSITION;
 import static Environment.MiningField.MAP_HEIGHT;
 import static Environment.MiningField.MAP_WIDTH;
 import static Utils.RandomGenerator.generateRandom;
@@ -76,8 +78,35 @@ public class Leader implements Agent{
     }
 
     @Override
-    public void send(Agent to, Type type) {
-
+    public void send(Type type, Object... content) {
+        switch (type) {
+            case ANNOUNCE_WINNER:
+            case GOLD_DROPPED:
+            case GOLD_FOUND:
+                break;
+            case GOLD_POSITION:
+                Miner miner = (Miner)content[0];
+                MiningField field = (MiningField)content[1];
+                Position goldPosition = (Position)content[2];
+                miner.searchInPosition(field, goldPosition);
+                break;
+        }
     }
 
+    public void affectMinerToGold(MiningField field, Position goldPosition) {
+        if (this.areAllMinersBusy()) return;
+        int random = generateRandom(4);
+        if (this.getMinerByIndex(random).isFree()) {
+            this.send(GOLD_POSITION, this.getMinerByIndex(random), field, goldPosition);
+        } else {
+            affectMinerToGold(field, goldPosition);
+        }
+    }
+
+    public boolean areAllMinersBusy() {
+        for (int i = 0; i < miners.size(); i++) {
+            if (this.getMinerByIndex(i).isFree()) return false;
+        }
+        return true;
+    }
 }

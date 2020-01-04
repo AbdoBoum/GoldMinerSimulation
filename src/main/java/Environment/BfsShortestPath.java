@@ -28,23 +28,24 @@ public class BfsShortestPath {
         this.map = map;
     }
 
-    public List<Position> getPath() {
-        if (path.isEmpty()) return Collections.emptyList();
+    public List<Position> getPath(Position start, Position end) {
+        findShortestPathLength(start, end);
         return path;
     }
 
-    public int findShortestPath(Position position) {
+    public int findShortestPathLength(Position start, Position end) {
         init();
-        boolean reached = false;
-        int row = position.getRow();
-        int col = position.getCol();
+        var reached = false;
+        var row = start.getRow();
+        var col = start.getCol();
         rQueue.add(row);
         cQueue.add(col);
         visited[row][col] = true;
         while (!rQueue.isEmpty()) {
             row = rQueue.poll();
             col = cQueue.poll();
-            if (atEnd(row, col)) {
+            if (atEnd(row, col, end)) {
+                path.add(new Position(row, col));
                 reached = true;
                 break;
             }
@@ -70,14 +71,14 @@ public class BfsShortestPath {
         path = new ArrayList<>();
     }
 
-    private boolean atEnd(int row, int col) {
-        return map[row][col] == 'D';
+    private boolean atEnd(int row, int col, Position end) {
+        return row == end.getRow() && col == end.getCol();
     }
 
     private void exploreNeighbours(int row, int col) {
-        for (int i = 0; i < 8; i++) {
-            int rr = row + dr[i];
-            int cc = col + dc[i];
+        for (var i = 0; i < 8; i++) {
+            var rr = row + dr[i];
+            var cc = col + dc[i];
             if (isValidMove(rr, cc)) {
                 rQueue.add(rr);
                 cQueue.add(cc);
