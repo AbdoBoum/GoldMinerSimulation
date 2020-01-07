@@ -88,7 +88,6 @@ public class MiningField {
     public boolean isGold(Position position) { return this.map[position.getRow()][position.getCol()] == 'o'; }
 
     public void freePositionFromGold(Position position) {
-        this.map[position.getRow()][position.getCol()] = '*';
         this.goldPieces--;
     }
 

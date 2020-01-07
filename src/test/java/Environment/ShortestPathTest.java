@@ -26,7 +26,6 @@ public class ShortestPathTest {
                 new Position(2, 2), new Position(3, 2),
                 new Position(4, 3)
         );
-        for (int i = 0; i < actualPath.size(); i++) System.out.println(actualPath.get(i));
         assertSamePath(expectedPath, actualPath);
     }
 

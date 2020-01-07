@@ -28,6 +28,7 @@ public class BfsShortestPath {
     }
 
     public List<Position> getPath(Position start, Position end) {
+        findShortestPathLength(start, end);
         Position p = end;
         while (p != null) {
             path.add(new Position(p.getRow(), p.getCol()));
