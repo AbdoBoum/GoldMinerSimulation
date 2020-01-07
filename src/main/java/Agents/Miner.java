@@ -59,12 +59,10 @@ public class Miner implements Agent {
         this.destination = new Position();
         var bfs = new BfsShortestPath(field.getMap());
         var path = bfs.getPath(this.position, this.destination);
-        System.out.println("Path length to deposit: " + bfs.findShortestPathLength(this.position, this.destination));
-        System.out.println("Path size to deposit " + path.size());
-        for (int i = 0; i < path.size(); i++) System.out.println(path.get(i));
+        System.out.println("Back to deposit");
         for (var i = 1; i < path.size(); i++) {
-            //System.out.println(this.position);
-            //System.out.println(field.toString());
+            System.out.println(this.position);
+            System.out.println(field.toString());
             field.freePosition(this.position);
             this.position = path.get(i);
             if (field.isGold(this.position)) {
