@@ -49,6 +49,7 @@ public class MiningField {
         for (var i = 0; i < MAP_HEIGHT; i++) {
             Arrays.fill(this.map[i], '*');
         }
+        map[0][0] = 'D';
     }
 
     private void addMiners() {
@@ -88,7 +89,6 @@ public class MiningField {
     public boolean isGold(Position position) { return this.map[position.getRow()][position.getCol()] == 'o'; }
 
     public void freePositionFromGold(Position position) {
-        this.map[position.getRow()][position.getCol()] = '*';
         this.goldPieces--;
     }
 

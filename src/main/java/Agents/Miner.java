@@ -34,15 +34,14 @@ public class Miner implements Agent {
     public void searchInPosition(MiningField field, Position destination) {
         var bfs = new BfsShortestPath(field.getMap());
         var path = bfs.getPath(this.position, destination);
-        System.out.println(this.id + " in Search");
         for (var i = 1; i < path.size(); i++) {
-            System.out.println(position);
-            System.out.println(field.toString());
+            //System.out.println(position);
+            //System.out.println(field.toString());
             field.freePosition(this.position);
             this.position = path.get(i);
             if (field.isGold(this.position)) {
                 field.setMinerInPosition(this.position);
-                this.pickGold(field);
+                pickGold(field);
                 break;
             } else {
                 field.setMinerInPosition(this.position);
@@ -59,21 +58,22 @@ public class Miner implements Agent {
     private void backToDeposit(MiningField field) {
         this.destination = new Position();
         var bfs = new BfsShortestPath(field.getMap());
-        var path = bfs.getPath(this.position, destination);
-        System.out.println("Back");
+        var path = bfs.getPath(this.position, this.destination);
+        System.out.println("Path length to deposit: " + bfs.findShortestPathLength(this.position, this.destination));
+        System.out.println("Path size to deposit " + path.size());
+        for (int i = 0; i < path.size(); i++) System.out.println(path.get(i));
         for (var i = 1; i < path.size(); i++) {
-            System.out.println(position);
-            System.out.println(field.toString());
+            //System.out.println(this.position);
+            //System.out.println(field.toString());
             field.freePosition(this.position);
             this.position = path.get(i);
             if (field.isGold(this.position)) {
-                this.send(GOLD_FOUND, field);
+                //this.send(GOLD_FOUND, field);
                 System.out.println("Found gold and I'm busy!!");
             } else {
                 field.setMinerInPosition(this.position);
             }
         }
-        this.position = new Position();
     }
 
     public void dropGold(MiningField field) {

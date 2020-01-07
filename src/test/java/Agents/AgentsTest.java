@@ -56,6 +56,7 @@ public class AgentsTest {
         var miner = field.getOwner().getMinerByIndex(0);
         miner.setPosition(new Position(4, 4));
         field.getMap()[0][1] = 'o';
+        System.out.println(field);
         miner.searchInPosition(field, new Position(0, 1));
         assertFalse(miner.isFree());
         assertThat(miner.getDestination(), equalTo(new Position(0, 0)));

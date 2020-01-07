@@ -96,8 +96,8 @@ public class Leader implements Agent{
     public void affectMinerToGold(MiningField field, Position goldPosition) {
         if (this.areAllMinersBusy()) return;
         int random = generateRandom(4);
-        if (this.getMinerByIndex(random).isFree()) {
-            this.send(GOLD_POSITION, this.getMinerByIndex(random), field, goldPosition);
+        if (getMinerByIndex(random).isFree()) {
+            send(GOLD_POSITION, getMinerByIndex(random), field, goldPosition);
         } else {
             affectMinerToGold(field, goldPosition);
         }
@@ -105,7 +105,7 @@ public class Leader implements Agent{
 
     public boolean areAllMinersBusy() {
         for (int i = 0; i < miners.size(); i++) {
-            if (this.getMinerByIndex(i).isFree()) return false;
+            if (getMinerByIndex(i).isFree()) return false;
         }
         return true;
     }

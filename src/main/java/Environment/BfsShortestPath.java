@@ -28,11 +28,13 @@ public class BfsShortestPath {
     }
 
     public List<Position> getPath(Position start, Position end) {
+        findShortestPathLength(start, end);
         Position p = end;
-        while (p != null) {
-            path.add(new Position(p.getRow(), p.getCol()));
+        while (!p.equals(start)) {
+            path.add(p);
             p = parent[p.getRow()][p.getCol()];
         }
+        path.add(start);
         Collections.reverse(path);
         return path;
     }
@@ -49,14 +51,12 @@ public class BfsShortestPath {
             row = rQueue.poll();
             col = cQueue.poll();
             if (atEnd(row, col, end)) {
-                path.add(new Position(row, col));
                 reached = true;
                 break;
             }
             exploreNeighbours(row, col);
             nodesLeftInLayer--;
             if (nodesLeftInLayer == 0) {
-                path.add(new Position(row, col));
                 nodesLeftInLayer = nodesInNextLayer;
                 nodesInNextLayer = 0;
                 moveCount++;
@@ -105,4 +105,5 @@ public class BfsShortestPath {
     private boolean isObstacle(int row, int col) {
         return map[row][col] == '#' || map[row][col] == 'M';
     }
+
 }
