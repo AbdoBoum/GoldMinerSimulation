@@ -1,8 +1,6 @@
 package Environment;
 
 import Utils.Position;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 import java.util.*;
 
@@ -21,6 +19,7 @@ public class BfsShortestPath {
     private boolean[][] visited;
     private int[] dr = {0, 1, 0, -1, 1, -1, 1, -1};
     private int[] dc = {1, 0, -1, 0, 1, -1, -1, 1};
+    private Position[][] parent;
 
     private List<Position> path;
 
@@ -29,7 +28,12 @@ public class BfsShortestPath {
     }
 
     public List<Position> getPath(Position start, Position end) {
-        findShortestPathLength(start, end);
+        Position p = end;
+        while (p != null) {
+            path.add(new Position(p.getRow(), p.getCol()));
+            p = parent[p.getRow()][p.getCol()];
+        }
+        Collections.reverse(path);
         return path;
     }
 
@@ -68,6 +72,7 @@ public class BfsShortestPath {
         nodesLeftInLayer = 1;
         nodesInNextLayer = 0;
         visited = new boolean[map.length][map[0].length];
+        parent = new Position[map.length][map[0].length];
         path = new ArrayList<>();
     }
 
@@ -80,6 +85,7 @@ public class BfsShortestPath {
             var rr = row + dr[i];
             var cc = col + dc[i];
             if (isValidMove(rr, cc)) {
+                parent[rr][cc] = new Position(row, col);
                 rQueue.add(rr);
                 cQueue.add(cc);
                 visited[rr][cc] = true;
@@ -97,6 +103,6 @@ public class BfsShortestPath {
     }
 
     private boolean isObstacle(int row, int col) {
-        return map[row][col] == '#';
+        return map[row][col] == '#' || map[row][col] == 'M';
     }
 }

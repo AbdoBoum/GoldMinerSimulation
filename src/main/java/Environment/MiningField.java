@@ -12,10 +12,10 @@ import static Utils.RandomGenerator.generateRandom;
 
 public class MiningField {
 
-    public static final int MAP_HEIGHT = 20;
-    public static final int MAP_WIDTH = 20;
-    public static final int DEFAULT_OBSTACLES = 15;
-    public static final int DEFAULT_GOLD_PIECES = 30;
+    public static final int MAP_HEIGHT = 10;
+    public static final int MAP_WIDTH = 10;
+    public static final int DEFAULT_OBSTACLES = 10;
+    public static final int DEFAULT_GOLD_PIECES = 20;
 
     @Setter @Getter
     private int goldPieces;
@@ -45,19 +45,18 @@ public class MiningField {
         addObstacles(obstacles);
     }
 
-    private void addMiners() {
-        for (int i = 0; i < owner.getMiners().size(); i++) {
-            var col = owner.getMinerByIndex(i).getPosition().getCol();
-            var row = owner.getMinerByIndex(i).getPosition().getRow();
-            this.map[col][row] = 'M';
-        }
-    }
-
     private void fillMiningField() {
         for (var i = 0; i < MAP_HEIGHT; i++) {
             Arrays.fill(this.map[i], '*');
         }
-        map[0][0] = 'D'; // depot
+    }
+
+    private void addMiners() {
+        for (int i = 0; i < owner.getMiners().size(); i++) {
+            var row = owner.getMinerByIndex(i).getPosition().getRow();
+            var col = owner.getMinerByIndex(i).getPosition().getCol();
+            this.map[row][col] = 'M';
+        }
     }
 
     private void addGold(int goldPieces) {
@@ -88,9 +87,13 @@ public class MiningField {
 
     public boolean isGold(Position position) { return this.map[position.getRow()][position.getCol()] == 'o'; }
 
-    public void freePosition(Position position) {
+    public void freePositionFromGold(Position position) {
         this.map[position.getRow()][position.getCol()] = '*';
         this.goldPieces--;
+    }
+
+    public void freePosition(Position position) {
+        this.map[position.getRow()][position.getCol()] = '*';
     }
 
     public void setMinerInPosition(Position position) {

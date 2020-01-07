@@ -34,17 +34,24 @@ public class Miner implements Agent {
     public void searchInPosition(MiningField field, Position destination) {
         var bfs = new BfsShortestPath(field.getMap());
         var path = bfs.getPath(this.position, destination);
+        System.out.println(this.id + " in Search");
         for (var i = 1; i < path.size(); i++) {
+            System.out.println(position);
+            System.out.println(field.toString());
+            field.freePosition(this.position);
             this.position = path.get(i);
             if (field.isGold(this.position)) {
+                field.setMinerInPosition(this.position);
                 this.pickGold(field);
                 break;
+            } else {
+                field.setMinerInPosition(this.position);
             }
         }
     }
 
     public void pickGold(MiningField field) {
-        field.freePosition(this.position);
+        field.freePositionFromGold(this.position);
         this.free = false;
         backToDeposit(field);
     }
@@ -53,10 +60,17 @@ public class Miner implements Agent {
         this.destination = new Position();
         var bfs = new BfsShortestPath(field.getMap());
         var path = bfs.getPath(this.position, destination);
+        System.out.println("Back");
         for (var i = 1; i < path.size(); i++) {
+            System.out.println(position);
+            System.out.println(field.toString());
+            field.freePosition(this.position);
             this.position = path.get(i);
             if (field.isGold(this.position)) {
                 this.send(GOLD_FOUND, field);
+                System.out.println("Found gold and I'm busy!!");
+            } else {
+                field.setMinerInPosition(this.position);
             }
         }
         this.position = new Position();
@@ -65,6 +79,7 @@ public class Miner implements Agent {
     public void dropGold(MiningField field) {
         this.free = true;
         send(GOLD_DROPPED, field);
+        System.out.println("+++++++1");
     }
 
     @Override
@@ -74,7 +89,6 @@ public class Miner implements Agent {
             case ANNOUNCE_WINNER:
                 break;
             case GOLD_DROPPED:
-
                 field.getOwner().updateScore(this);
                 break;
             case GOLD_FOUND:
