@@ -72,7 +72,7 @@ public class Leader implements Agent{
     private void updateWinner(Miner winner) {
         for (int i = 0; i < NUM_MINERS; i++) {
             if (getMinerByIndex(i).equals(winner))
-                winner.setWinner(true);
+                getMinerByIndex(i).setWinner(true);
             else getMinerByIndex(i).setWinner(false);
         }
     }

@@ -10,22 +10,28 @@ import static Environment.MiningField.MAP_HEIGHT;
 
 public class Main {
     public static void main(String[] args) {
-        /*var field = new MiningField();
+        var field = new MiningField();
         var leader = field.getOwner();
-        while (leader.getMinerByIndex(0).getScore() < 5) {
-            var position = new Position(RandomGenerator.generateRandom(MAP_HEIGHT), RandomGenerator.generateRandom(MAP_HEIGHT));
-            System.out.println("Position to: " + position);
-            leader.getMinerByIndex(0).searchInPosition(field, position);
-            System.out.println("Gold: " + field.getGoldPieces());
-            if (leader.getMinerByIndex(0).getPosition().equals(new Position())) {
-                System.out.println("Here");
-                leader.getMinerByIndex(0).dropGold(field);
+        while (field.getGoldPieces() > 18) {
+            var positions = generateRandomPositions();
+            for (var i = 0; i < 4; i++) {
+                leader.getMinerByIndex(i).searchInPosition(field, positions.get(i));
+            }
+            for (var i = 0; i < 4; i++) {
+                if (leader.getMinerByIndex(i).getPosition().equals(new Position()) && !leader.getMinerByIndex(i).isFree()) {
+                    leader.getMinerByIndex(i).dropGold(field);
+                }
             }
         }
         System.out.println("Gold: " + field.getGoldPieces());
         System.out.println("Obstacles: " + field.getObstacles());
+        printScores(leader);
+    }
+
+    private static void printScores(Leader leader) {
         for (int i = 0; i < 4; i++)
-            System.out.println("Score: " + leader.getMinerByIndex(i).getScore() + " Winner: " + leader.getMinerByIndex(0).isWinner());
+            System.out.println("Score: " + leader.getMinerByIndex(i).getScore() + " Winner: " + leader.getMinerByIndex(i).isWinner());
+
     }
 
     private static List<Position> generateRandomPositions() {
@@ -35,6 +41,6 @@ public class Main {
             Position position = new Position(maxRandomValue, maxRandomValue);
             positions.add(position);
         }
-        return positions;*/
+        return positions;
     }
 }

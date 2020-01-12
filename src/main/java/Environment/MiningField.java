@@ -12,9 +12,9 @@ import static Utils.RandomGenerator.generateRandom;
 
 public class MiningField {
 
-    public static final int MAP_HEIGHT = 10;
-    public static final int MAP_WIDTH = 10;
-    public static final int DEFAULT_OBSTACLES = 10;
+    public static final int MAP_HEIGHT = 20;
+    public static final int MAP_WIDTH = 20;
+    public static final int DEFAULT_OBSTACLES = 15;
     public static final int DEFAULT_GOLD_PIECES = 20;
 
     @Setter @Getter
@@ -41,8 +41,8 @@ public class MiningField {
     private void initMiningField() {
         fillMiningField();
         addMiners();
-        addGold(goldPieces);
-        addObstacles(obstacles);
+        addGold();
+        addObstacles();
     }
 
     private void fillMiningField() {
@@ -60,24 +60,24 @@ public class MiningField {
         }
     }
 
-    private void addGold(int goldPieces) {
+    private void addGold() {
         var i = 0;
-        while (i < goldPieces) {
+        while (i < this.goldPieces) {
             Position position = new Position(generateRandom(MAP_HEIGHT), generateRandom(MAP_WIDTH));
             if (isFreePosition(position)) {
-                i++;
                 this.map[position.getRow()][position.getCol()] = 'o';
+                i++;
             }
         }
     }
 
-    private void addObstacles(int obstacles) {
+    private void addObstacles() {
         var i = 0;
-        while (i < obstacles) {
+        while (i < this.obstacles) {
             Position position = new Position(generateRandom(MAP_HEIGHT), generateRandom(MAP_WIDTH));
             if (isFreePosition(position)) {
-                i++;
                 this.map[position.getRow()][position.getCol()] = '#';
+                i++;
             }
         }
     }
@@ -88,7 +88,7 @@ public class MiningField {
 
     public boolean isGold(Position position) { return this.map[position.getRow()][position.getCol()] == 'o'; }
 
-    public void freePositionFromGold(Position position) {
+    public void freePositionFromGold() {
         this.goldPieces--;
     }
 

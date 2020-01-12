@@ -32,11 +32,15 @@ public class Miner implements Agent {
     }
 
     public void searchInPosition(MiningField field, Position destination) {
+        if (!isFree()) {
+            backToDeposit(field);
+            return;
+        }
         var bfs = new BfsShortestPath(field.getMap());
         var path = bfs.getPath(this.position, destination);
         for (var i = 1; i < path.size(); i++) {
-            //System.out.println(position);
-            //System.out.println(field.toString());
+            System.out.println(this.id + " " + this.position);
+            System.out.println(field.toString());
             field.freePosition(this.position);
             this.position = path.get(i);
             if (field.isGold(this.position)) {
@@ -50,7 +54,7 @@ public class Miner implements Agent {
     }
 
     public void pickGold(MiningField field) {
-        field.freePositionFromGold(this.position);
+        field.freePositionFromGold();
         this.free = false;
         backToDeposit(field);
     }
@@ -61,12 +65,12 @@ public class Miner implements Agent {
         var path = bfs.getPath(this.position, this.destination);
         System.out.println("Back to deposit");
         for (var i = 1; i < path.size(); i++) {
-            System.out.println(this.position);
+            System.out.println(this.id + " " + this.position);
             System.out.println(field.toString());
-            field.freePosition(this.position);
+            if (!field.isGold(position)) field.freePosition(this.position);
             this.position = path.get(i);
             if (field.isGold(this.position)) {
-                //this.send(GOLD_FOUND, field);
+                this.send(GOLD_FOUND, field);
                 System.out.println("Found gold and I'm busy!!");
             } else {
                 field.setMinerInPosition(this.position);

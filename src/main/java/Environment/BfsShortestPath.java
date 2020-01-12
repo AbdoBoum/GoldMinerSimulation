@@ -29,12 +29,12 @@ public class BfsShortestPath {
 
     public List<Position> getPath(Position start, Position end) {
         findShortestPathLength(start, end);
-        Position p = end;
-        while (!p.equals(start)) {
+        var p = end;
+        while ((p != null) && !p.equals(start)) {
             path.add(p);
             p = parent[p.getRow()][p.getCol()];
         }
-        path.add(start);
+        if (p != null) path.add(start);
         Collections.reverse(path);
         return path;
     }
@@ -95,7 +95,7 @@ public class BfsShortestPath {
     }
 
     private boolean isValidMove(int row, int col) {
-        return isInTheGrid(row, col) && !visited[row][col] && !isObstacle(row, col);
+        return (isInTheGrid(row, col) && !visited[row][col] && !isObstacle(row, col));
     }
 
     private boolean isInTheGrid(int row, int col) {
@@ -103,7 +103,7 @@ public class BfsShortestPath {
     }
 
     private boolean isObstacle(int row, int col) {
-        return map[row][col] == '#' || map[row][col] == 'M';
+        return (map[row][col] == '#') || (map[row][col] == 'M');
     }
 
 }
