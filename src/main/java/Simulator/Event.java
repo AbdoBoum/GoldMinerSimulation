@@ -75,11 +75,14 @@ public class Event {
                 field.setMinerInPosition(miner.getPosition());
             }
         }
+        System.out.println(miner.getId() + " " + miner.getPosition());
+        System.out.println(field.toString());
     }
 
     public static void dropGold(Miner miner, MiningField field) {
         miner.setFree(true);
         miner.send(GOLD_DROPPED, field);
+        miner.setScore(miner.getScore() +1);
         System.out.println("+++++++1");
     }
 

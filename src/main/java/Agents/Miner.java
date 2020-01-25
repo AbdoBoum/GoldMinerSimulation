@@ -1,6 +1,5 @@
 package Agents;
 
-import Environment.BfsShortestPath;
 import Environment.MiningField;
 import Environment.Position;
 import lombok.AllArgsConstructor;
@@ -8,9 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.UUID;
-
-import static Agents.Agent.Type.GOLD_DROPPED;
-import static Agents.Agent.Type.GOLD_FOUND;
 
 @Getter @Setter @AllArgsConstructor
 public class Miner implements Agent {

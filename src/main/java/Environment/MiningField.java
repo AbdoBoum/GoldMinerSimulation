@@ -83,27 +83,27 @@ public class MiningField {
     }
 
     public boolean isFreePosition(Position position) {
-        return this.map[position.getRow()][position.getCol()] == '*';
+        return this.getMap()[position.getRow()][position.getCol()] == '*';
     }
 
-    public boolean isGold(Position position) { return this.map[position.getRow()][position.getCol()] == 'o'; }
+    public boolean isGold(Position position) { return this.getMap()[position.getRow()][position.getCol()] == 'o'; }
 
     public void freePositionFromGold() {
         this.goldPieces--;
     }
 
     public void freePosition(Position position) {
-        this.map[position.getRow()][position.getCol()] = '*';
+        this.getMap()[position.getRow()][position.getCol()] = '*';
     }
 
     public void setMinerInPosition(Position position) {
-        this.map[position.getRow()][position.getCol()] = 'M';
+        this.getMap()[position.getRow()][position.getCol()] = 'M';
     }
 
     @Override
     public String toString() {
         var builder = new StringBuilder();
-        for (var i = 0; i < MAP_WIDTH; i++) {
+        for (var i = 0; i < map.length; i++) {
             var line = map[i];
             IntStream.range(0, line.length)
                     .mapToObj(c -> line[c])
