@@ -1,14 +1,14 @@
 package Environment;
 
 import Agents.Leader;
-import Utils.Position;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-import static Utils.RandomGenerator.generateRandom;
+import static Simulator.RandomGenerator.generateRandom;
 
 public class MiningField {
 

@@ -1,7 +1,5 @@
 package Environment;
 
-import Utils.Position;
-
 import java.util.*;
 
 public class BfsShortestPath {

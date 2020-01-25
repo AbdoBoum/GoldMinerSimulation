@@ -1,7 +1,7 @@
 package Agents;
 
 import Environment.MiningField;
-import Utils.Position;
+import Environment.Position;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -47,22 +47,6 @@ public class AgentsTest {
             if (leader.getMinerByIndex(i).equals(miner)) assertThat(leader.getMinerByIndex(i).isWinner(), equalTo(true));
             else assertThat(leader.getMinerByIndex(i).isWinner(), equalTo(false));
         }
-    }
-
-    @Test
-    public void goldSearchingAndHandling() {
-        var field = new MiningField();
-        var miner = field.getOwner().getMinerByIndex(0);
-        miner.setPosition(new Position(4, 4));
-        field.getMap()[0][1] = 'o';
-        System.out.println(field);
-        miner.searchInPosition(field, new Position(0, 1));
-        assertFalse(miner.isFree());
-        assertThat(miner.getDestination(), equalTo(new Position(0, 0)));
-        miner.dropGold(field);
-        assertTrue(miner.isFree());
-        assertThat(miner.getScore(), equalTo(1));
-        assertThat(miner.getPosition(), equalTo(new Position()));
     }
 
 }

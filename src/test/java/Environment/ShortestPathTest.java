@@ -1,6 +1,5 @@
 package Environment;
 
-import Utils.Position;
 import org.junit.Test;
 
 import java.util.List;

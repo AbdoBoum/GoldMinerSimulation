@@ -1,7 +1,7 @@
 package Agents;
 
 import Environment.MiningField;
-import Utils.Position;
+import Environment.Position;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -13,11 +13,12 @@ import static Agents.Agent.Type.ANNOUNCE_WINNER;
 import static Agents.Agent.Type.GOLD_POSITION;
 import static Environment.MiningField.MAP_HEIGHT;
 import static Environment.MiningField.MAP_WIDTH;
-import static Utils.RandomGenerator.generateRandom;
+import static Simulator.Event.searchInPosition;
+import static Simulator.RandomGenerator.generateRandom;
 
 public class Leader implements Agent{
 
-    private static final int NUM_MINERS = 4;
+    public static final int NUM_MINERS = 4;
     @Getter private List<Agent> miners;
     @Getter private int teamMaxScore;
 
@@ -88,14 +89,14 @@ public class Leader implements Agent{
                 Miner miner = (Miner)content[0];
                 MiningField field = (MiningField)content[1];
                 Position goldPosition = (Position)content[2];
-                miner.searchInPosition(field, goldPosition);
+                searchInPosition(miner, field, goldPosition);
                 break;
         }
     }
 
     public void affectMinerToGold(MiningField field, Position goldPosition) {
         if (this.areAllMinersBusy()) return;
-        int random = generateRandom(4);
+        int random = generateRandom(NUM_MINERS);
         if (getMinerByIndex(random).isFree()) {
             send(GOLD_POSITION, getMinerByIndex(random), field, goldPosition);
         } else {

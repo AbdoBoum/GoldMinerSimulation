@@ -2,7 +2,7 @@ package Agents;
 
 import Environment.BfsShortestPath;
 import Environment.MiningField;
-import Utils.Position;
+import Environment.Position;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,59 +29,6 @@ public class Miner implements Agent {
     @Override
     public void broadcast(Type type, Object content) {
         throw new IllegalArgumentException("Miner can't broadcast");
-    }
-
-    public void searchInPosition(MiningField field, Position destination) {
-        if (!isFree()) {
-            backToDeposit(field);
-            return;
-        }
-        var bfs = new BfsShortestPath(field.getMap());
-        var path = bfs.getPath(this.position, destination);
-        for (var i = 1; i < path.size(); i++) {
-            System.out.println(this.id + " " + this.position);
-            System.out.println(field.toString());
-            field.freePosition(this.position);
-            this.position = path.get(i);
-            if (field.isGold(this.position)) {
-                field.setMinerInPosition(this.position);
-                pickGold(field);
-                break;
-            } else {
-                field.setMinerInPosition(this.position);
-            }
-        }
-    }
-
-    public void pickGold(MiningField field) {
-        field.freePositionFromGold();
-        this.free = false;
-        backToDeposit(field);
-    }
-
-    private void backToDeposit(MiningField field) {
-        this.destination = new Position();
-        var bfs = new BfsShortestPath(field.getMap());
-        var path = bfs.getPath(this.position, this.destination);
-        System.out.println("Back to deposit");
-        for (var i = 1; i < path.size(); i++) {
-            System.out.println(this.id + " " + this.position);
-            System.out.println(field.toString());
-            if (!field.isGold(position)) field.freePosition(this.position);
-            this.position = path.get(i);
-            if (field.isGold(this.position)) {
-                this.send(GOLD_FOUND, field);
-                System.out.println("Found gold and I'm busy!!");
-            } else {
-                field.setMinerInPosition(this.position);
-            }
-        }
-    }
-
-    public void dropGold(MiningField field) {
-        this.free = true;
-        send(GOLD_DROPPED, field);
-        System.out.println("+++++++1");
     }
 
     @Override

@@ -1,4 +1,4 @@
-package Utils;
+package Simulator;
 
 import lombok.Getter;
 import org.apache.commons.math3.random.MersenneTwister;
