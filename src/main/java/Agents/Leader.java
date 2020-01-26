@@ -21,17 +21,27 @@ public class Leader implements Agent{
     public static final int NUM_MINERS = 4;
     @Getter private List<Agent> miners;
     @Getter private int teamMaxScore;
+    private List<Position> diposites;
 
     public Leader() {
         teamMaxScore = 0;
         miners = new ArrayList<>();
+        createDiposites();
         createMiners();
         generateMinersInitialPosition();
     }
 
+    private void createDiposites(){
+        diposites = new ArrayList<>();
+        diposites.add(new Position());
+        diposites.add(new Position(MAP_HEIGHT-1,0));
+        diposites.add(new Position(0,MAP_WIDTH-1));
+        diposites.add(new Position(MAP_HEIGHT-1,MAP_WIDTH-1));
+    }
+
     private void createMiners() {
         for (int i = 0; i < NUM_MINERS; i++) {
-            miners.add(new Miner());
+            miners.add(new Miner(diposites.get(i)));
         }
     }
 

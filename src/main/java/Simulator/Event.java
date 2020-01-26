@@ -40,6 +40,9 @@ public class Event {
             return;
         }
         var path = getPath(miner.getPosition(), destination,field.getMap());
+        for (var item: path ) {
+            System.out.println(item);
+        }
         for (var i = 1; i < path.size(); i++) {
             System.out.println(miner.getId() + " " + miner.getPosition());
             System.out.println(field.toString());
@@ -53,6 +56,7 @@ public class Event {
                 field.setMinerInPosition(miner.getPosition());
             }
         }
+        System.out.println("the miner is finish her role"+miner.getId());
     }
 
     public static void pickGold(Miner miner, MiningField field) {
@@ -62,17 +66,20 @@ public class Event {
     }
 
     private static void backToDeposit(Miner miner, MiningField field) {
-        miner.setDestination(new Position());
+        miner.setDestination(miner.getDeposite());
         var path = getPath(miner.getPosition(), miner.getDestination(),field.getMap());
         System.out.println("Back to deposit");
+        for (var item:path ) {
+            System.out.println(item);
+        }
         for (var i = 1; i < path.size(); i++) {
             System.out.println(miner.getId() + " " + miner.getPosition());
             System.out.println(field.toString());
             if (!field.isGold(miner.getPosition())) field.freePosition(miner.getPosition());
             miner.setPosition(path.get(i));
             if (field.isGold(miner.getPosition())) {
-                miner.send(GOLD_FOUND, field);
                 System.out.println("Found gold and I'm busy!!");
+                miner.send(GOLD_FOUND, field);
             } else {
                 field.setMinerInPosition(miner.getPosition());
             }

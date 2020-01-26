@@ -18,8 +18,15 @@ public class Miner implements Agent {
     private boolean winner;
     private Position destination;
 
-    public Miner() {
-        this(UUID.randomUUID().toString(), true, new Position(), 0, false, new Position());
+    //TODO : ADD FOR EACH MINER DEPOSITE
+    private Position deposite;
+
+    public Miner(){
+        this(UUID.randomUUID().toString(), true, new Position(), 0, false, new Position(), new Position());
+    }
+
+    public Miner(Position deposite) {
+        this(UUID.randomUUID().toString(), true, new Position(), 0, false, new Position(),deposite);
     }
 
     @Override

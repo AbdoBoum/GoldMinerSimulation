@@ -21,7 +21,7 @@ public class AgentsTest {
 
     @Test
     public void customMinerCreation() {
-        var miner = new Miner("124958", true, new Position(4, 4), 0, false, new Position());
+        var miner = new Miner("124958", true, new Position(4, 4), 0, false, new Position(),new Position());
         assertThat(miner.isFree(), equalTo(true));
         assertThat(miner.getPosition().getRow(), equalTo(4));
         assertThat(miner.getPosition().getCol(), equalTo(4));

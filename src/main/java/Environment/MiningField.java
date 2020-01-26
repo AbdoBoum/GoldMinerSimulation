@@ -15,7 +15,7 @@ public class MiningField {
     public static final int MAP_HEIGHT = 20;
     public static final int MAP_WIDTH = 20;
     public static final int DEFAULT_OBSTACLES = 15;
-    public static final int DEFAULT_GOLD_PIECES = 20;
+    public static final int DEFAULT_GOLD_PIECES = 25;
 
     @Setter @Getter
     private int goldPieces;
@@ -50,6 +50,9 @@ public class MiningField {
             Arrays.fill(this.map[i], '*');
         }
         map[0][0] = 'D';
+        map[0][MAP_WIDTH-1]= 'D';
+        map[MAP_HEIGHT-1][0] = 'D';
+        map[MAP_HEIGHT-1][MAP_WIDTH-1] = 'D';
     }
 
     private void addMiners() {

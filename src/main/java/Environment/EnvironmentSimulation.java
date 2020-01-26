@@ -4,6 +4,9 @@ import Agents.Leader;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 
 import static Simulator.Event.*;
@@ -22,25 +25,44 @@ public class EnvironmentSimulation {
     }
 
     public static void simulerConfigurationParDefault(){
+        //TODO DELETE BUFFER
+        BufferedReader brr = new BufferedReader(new InputStreamReader(System.in));
         EnvironmentSimulation env = new EnvironmentSimulation();
         MiningField field= env.getField();
         Leader leader = field.getOwner();
-        List<Position> positions = generateRandomPositions();
-        while (field.getGoldPieces()>15) {
+        while (field.getGoldPieces()>0) {
+            List<Position> positions = generateRandomPositions();
             for (int i = 0; i < leader.getMiners().size(); i++) {
-                //genere une position aleatoire
                 searchInPosition(leader.getMinerByIndex(i), field, positions.get(i));
+
+//                try {
+//                    brr.readLine();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+
             }
 
             for (int i = 0; i < leader.getMiners().size(); i++) {
-                if (leader.getMinerByIndex(i).getPosition().equals(new Position()) &&
+                if (leader.getMinerByIndex(i).getPosition().equals(leader.getMinerByIndex(i).getDeposite()) &&
                         !leader.getMinerByIndex(i).isFree()) {
                     dropGold(leader.getMinerByIndex(i), field);
                 }
             }
+            for (int i = 0; i < leader.getMiners().size(); i++) {
+                System.out.println(leader.getMinerByIndex(i).getScore());
+            }
+            System.out.println("The field----------------");
+            System.out.println(field);
+//            try {
+//                brr.readLine();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
         }
         System.out.println("Gold: " +field.getGoldPieces());
 
+        printScores(leader);
 
     }
 
@@ -50,15 +72,15 @@ public class EnvironmentSimulation {
        Leader leader = field.getOwner();
         while (field.getGoldPieces()!=0) {
                 Position position = generateRandomPosition();
-                searchInPosition(leader.getMinerByIndex(0), field, position);
-                if (leader.getMinerByIndex(0).getPosition().equals(new Position()) &&
-                        !leader.getMinerByIndex(0).isFree()) {
-                    dropGold(leader.getMinerByIndex(0), field);
+                searchInPosition(leader.getMinerByIndex(1), field, position);
+                if (leader.getMinerByIndex(1).getPosition().equals(leader.getMinerByIndex(1).getDeposite()) &&
+                        !leader.getMinerByIndex(1).isFree()) {
+                    dropGold(leader.getMinerByIndex(1), field);
                 }
 
         }
         System.out.println("Gold: " +field.getGoldPieces());
-        System.out.println("Score: " +leader.getMinerByIndex(0).getScore());
+        System.out.println("Score: " +leader.getMinerByIndex(1).getScore());
     }
 
     private static void printScores(Leader leader) {
