@@ -5,12 +5,16 @@ import Environment.BfsShortestPath;
 import Environment.MiningField;
 import Environment.Position;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 import static Agents.Agent.Type.GOLD_DROPPED;
 import static Agents.Agent.Type.GOLD_FOUND;
 import static Agents.Leader.NUM_MINERS;
+import static Environment.BfsShortestPath.getPath;
 import static Environment.MiningField.MAP_HEIGHT;
 import static Environment.MiningField.MAP_WIDTH;
 
@@ -35,8 +39,7 @@ public class Event {
             backToDeposit(miner, field);
             return;
         }
-        var bfs = new BfsShortestPath(field.getMap());
-        var path = bfs.getPath(miner.getPosition(), destination);
+        var path = getPath(miner.getPosition(), destination,field.getMap());
         for (var i = 1; i < path.size(); i++) {
             System.out.println(miner.getId() + " " + miner.getPosition());
             System.out.println(field.toString());
@@ -60,8 +63,7 @@ public class Event {
 
     private static void backToDeposit(Miner miner, MiningField field) {
         miner.setDestination(new Position());
-        var bfs = new BfsShortestPath(field.getMap());
-        var path = bfs.getPath(miner.getPosition(), miner.getDestination());
+        var path = getPath(miner.getPosition(), miner.getDestination(),field.getMap());
         System.out.println("Back to deposit");
         for (var i = 1; i < path.size(); i++) {
             System.out.println(miner.getId() + " " + miner.getPosition());
@@ -79,11 +81,9 @@ public class Event {
         System.out.println(field.toString());
     }
 
-    public static void dropGold(Miner miner, MiningField field) {
-        miner.setFree(true);
+    public static void dropGold(Miner miner, MiningField field){
         miner.send(GOLD_DROPPED, field);
-        miner.setScore(miner.getScore() +1);
-        System.out.println("+++++++1");
+        miner.setFree(true);
     }
 
 

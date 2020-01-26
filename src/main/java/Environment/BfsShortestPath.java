@@ -37,6 +37,12 @@ public class BfsShortestPath {
         return path;
     }
 
+    public static List<Position> getPath(Position start, Position end, char[][] map){
+        var bfs = new BfsShortestPath(map);
+        return bfs.getPath(start,end);
+    }
+
+
     public int findShortestPathLength(Position start, Position end) {
         init();
         var reached = false;
@@ -62,6 +68,8 @@ public class BfsShortestPath {
         }
         return reached ? moveCount : -1;
     }
+
+
 
     private void init() {
         rQueue = new LinkedList<>();
