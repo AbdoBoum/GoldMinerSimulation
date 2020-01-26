@@ -22,15 +22,15 @@ public class Event {
 
     public static List<Position> generateRandomPositions() {
         var positions = new ArrayList<Position>();
-        for (int i = 0; i < NUM_MINERS; i++) {
+        for (var i = 0; i < NUM_MINERS; i++) {
             positions.add(generateRandomPosition());
         }
         return positions;
     }
 
     public static Position generateRandomPosition() {
-        int row = RandomGenerator.generateRandom(MAP_HEIGHT);
-        int col = RandomGenerator.generateRandom(MAP_WIDTH);
+        var row = RandomGenerator.generateRandom(MAP_HEIGHT);
+        var col = RandomGenerator.generateRandom(MAP_WIDTH);
         return new Position(row, col);
     }
 

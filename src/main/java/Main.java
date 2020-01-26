@@ -1,6 +1,6 @@
-import static Environment.EnvironmentSimulation.simulatWithOneMiner;
+
 public class Main {
     public static void main(String[] args) {
-        simulatWithOneMiner();
+        StartSimulationFacade.simulateOneMiner();
     }
 }
