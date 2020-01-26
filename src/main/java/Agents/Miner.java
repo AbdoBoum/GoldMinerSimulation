@@ -17,8 +17,6 @@ public class Miner implements Agent {
     private int score;
     private boolean winner;
     private Position destination;
-
-    //TODO : ADD FOR EACH MINER DEPOSITE
     private Position deposite;
 
     public Miner(){
