@@ -16,32 +16,35 @@ import static Environment.MiningField.MAP_WIDTH;
 import static Simulator.Event.searchInPosition;
 import static Simulator.RandomGenerator.generateRandom;
 
-public class Leader implements Agent{
+public class Leader implements Agent {
 
     public static final int NUM_MINERS = 4;
+
     @Getter private List<Agent> miners;
+
     @Getter private int teamMaxScore;
-    private List<Position> diposites;
+
+    @Getter private List<Position> diposites;
 
     public Leader() {
         teamMaxScore = 0;
-        miners = new ArrayList<>();
         createDiposites();
         createMiners();
         generateMinersInitialPosition();
     }
 
-    private void createDiposites(){
+    private void createDiposites() {
         diposites = new ArrayList<>();
         diposites.add(new Position());
-        diposites.add(new Position(MAP_HEIGHT-1,0));
-        diposites.add(new Position(0,MAP_WIDTH-1));
-        diposites.add(new Position(MAP_HEIGHT-1,MAP_WIDTH-1));
+        diposites.add(new Position(MAP_HEIGHT - 1, 0));
+        diposites.add(new Position(0, MAP_WIDTH - 1));
+        diposites.add(new Position(MAP_HEIGHT - 1, MAP_WIDTH - 1));
     }
 
     private void createMiners() {
+        miners = new ArrayList<>();
         for (int i = 0; i < NUM_MINERS; i++) {
-            miners.add(new Miner(diposites.get(i)));
+            miners.add(new Miner());
         }
     }
 
@@ -59,7 +62,7 @@ public class Leader implements Agent{
     }
 
     public Miner getMinerByIndex(int index) {
-        return (Miner)this.miners.get(index);
+        return (Miner) this.miners.get(index);
     }
 
     public void updateScore(Miner miner) {
@@ -74,9 +77,10 @@ public class Leader implements Agent{
     public void broadcast(Type type, Object content) {
         switch (type) {
             case ANNOUNCE_WINNER:
-                updateWinner((Miner)content);
+                updateWinner((Miner) content);
                 break;
-            default: break;
+            default:
+                break;
         }
     }
 
@@ -96,9 +100,9 @@ public class Leader implements Agent{
             case GOLD_FOUND:
                 break;
             case GOLD_POSITION:
-                Miner miner = (Miner)content[0];
-                MiningField field = (MiningField)content[1];
-                Position goldPosition = (Position)content[2];
+                Miner miner = (Miner) content[0];
+                MiningField field = (MiningField) content[1];
+                Position goldPosition = (Position) content[2];
                 searchInPosition(miner, field, goldPosition);
                 break;
         }

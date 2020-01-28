@@ -63,7 +63,8 @@ public class Event {
     }
 
     private static void backToDeposit(Miner miner, MiningField field) {
-        miner.setDestination(miner.getDeposite());
+        int minerIndex = field.getOwner().getMiners().indexOf(miner);
+        miner.setDestination(field.getOwner().getDiposites().get(minerIndex));
         var path = getPath(miner.getPosition(), miner.getDestination(),field.getMap());
         System.out.println("Back to deposit");
         for (var i = 1; i < path.size(); i++) {

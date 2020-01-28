@@ -42,7 +42,7 @@ public class EventsTest {
         miningField.setMap(map);
         position = new Position(1, 2);
         minerPosition = new Position(3, 3);
-        miner = new Miner("07e6f3b4", true, minerPosition, 0, false, position,new Position());
+        miner = new Miner("07e6f3b4", true, minerPosition, 0, false, position);
     }
 
     @Test
