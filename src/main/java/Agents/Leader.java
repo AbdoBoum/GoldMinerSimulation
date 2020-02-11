@@ -65,6 +65,10 @@ public class Leader implements Agent {
         return (Miner) this.miners.get(index);
     }
 
+    public int getMinerIndex(Miner miner) {
+        return miners.indexOf(miner);
+    }
+
     public void updateScore(Miner miner) {
         miner.setScore(miner.getScore() + 1);
         if (miner.getScore() > teamMaxScore) {
