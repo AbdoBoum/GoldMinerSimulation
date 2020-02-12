@@ -35,7 +35,7 @@ public class StartSimulationFacade {
             }
 
             for (var i = 0; i < leader.getMiners().size(); i++) {
-                if (leader.getMinerByIndex(i).getPosition().equals(leader.getMinerByIndex(i).getDeposit()) &&
+                if (leader.getMinerByIndex(i).getPosition().equals(leader.getDiposites().get(i)) &&
                         !leader.getMinerByIndex(i).isFree()) {
                     dropGold(leader.getMinerByIndex(i), field);
                 }

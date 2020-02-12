@@ -35,11 +35,11 @@ public class Leader implements Agent{
     /**
      * Positions of the deposit
      */
+    @Getter
     private List<Position> diposites;
 
     public Leader() {
         teamMaxScore = 0;
-        miners = new ArrayList<>();
         createDiposites();
         createMiners();
         generateMinersInitialPosition();
@@ -52,9 +52,9 @@ public class Leader implements Agent{
     private void createDiposites(){
         diposites = new ArrayList<>();
         diposites.add(new Position());
-        diposites.add(new Position(MAP_HEIGHT-1,0));
-        diposites.add(new Position(0,MAP_WIDTH-1));
-        diposites.add(new Position(MAP_HEIGHT-1,MAP_WIDTH-1));
+        diposites.add(new Position(MAP_HEIGHT - 1, 0));
+        diposites.add(new Position(0, MAP_WIDTH - 1));
+        diposites.add(new Position(MAP_HEIGHT - 1, MAP_WIDTH - 1));
     }
 
     /**
@@ -62,8 +62,9 @@ public class Leader implements Agent{
      * @return void
      */
     private void createMiners() {
+        miners = new ArrayList<>();
         for (int i = 0; i < NUM_MINERS; i++) {
-            miners.add(new Miner(diposites.get(i)));
+            miners.add(new Miner());
         }
     }
 
@@ -90,7 +91,11 @@ public class Leader implements Agent{
      * @return miner object
      */
     public Miner getMinerByIndex(int index) {
-        return (Miner)this.miners.get(index);
+        return (Miner) this.miners.get(index);
+    }
+
+    public int getMinerIndex(Miner miner) {
+        return miners.indexOf(miner);
     }
 
     /**
@@ -110,9 +115,10 @@ public class Leader implements Agent{
     public void broadcast(Type type, Object content) {
         switch (type) {
             case ANNOUNCE_WINNER:
-                updateWinner((Miner)content);
+                updateWinner((Miner) content);
                 break;
-            default: break;
+            default:
+                break;
         }
     }
 
@@ -137,9 +143,9 @@ public class Leader implements Agent{
             case GOLD_FOUND:
                 break;
             case GOLD_POSITION:
-                Miner miner = (Miner)content[0];
-                MiningField field = (MiningField)content[1];
-                Position goldPosition = (Position)content[2];
+                Miner miner = (Miner) content[0];
+                MiningField field = (MiningField) content[1];
+                Position goldPosition = (Position) content[2];
                 searchInPosition(miner, field, goldPosition);
                 break;
         }

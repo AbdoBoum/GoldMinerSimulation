@@ -38,17 +38,9 @@ public class Miner implements Agent {
      * the position of the destination
      */
     private Position destination;
-    /**
-     * the position of the deposit
-     */
-    private Position deposit;
 
     public Miner(){
-        this(UUID.randomUUID().toString(), true, new Position(), 0, false, new Position(), new Position());
-    }
-
-    public Miner(Position deposit) {
-        this(UUID.randomUUID().toString(), true, new Position(), 0, false, new Position(), deposit);
+        this(UUID.randomUUID().toString(), true, new Position(), 0, false, new Position());
     }
 
     @Override

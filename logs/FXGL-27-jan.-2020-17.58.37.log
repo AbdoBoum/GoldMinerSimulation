@@ -1,0 +1,179 @@
+17:53:28.883 [main                     ] DEBUG GameApplication      - Logger initialized
+17:53:28.959 [main                     ] DEBUG GameApplication      - Logging settings
+Title: GOLD MINERS
+Version: 0.1
+Width: 1200
+Height: 1200
+Fullscreen: false
+Intro: false
+Menus: false
+Profiling: false
+Single step:false
+App Mode: DEVELOPER
+Menu Key: ESCAPE
+Stage Style: DECORATED
+Scene Factory: class com.almasb.fxgl.app.SceneFactory
+Dialog Factory: class com.almasb.fxgl.ui.FXGLDialogFactory
+UI Factory: class com.almasb.fxgl.ui.FXGLUIFactory
+
+17:53:29.824 [JavaFX Application Thread] DEBUG Engine               - Initializing FXGL
+17:53:29.824 [JavaFX Application Thread] INFO  Engine               - FXGL-11.7 (05.01.2020 09.37) on WINDOWS (J:11.0.5 FX:12.0.1)
+17:53:29.825 [JavaFX Application Thread] INFO  Engine               - Source code and latest versions at: https://github.com/AlmasB/FXGL
+17:53:29.825 [JavaFX Application Thread] INFO  Engine               -              Join the FXGL chat at: https://gitter.im/AlmasB/FXGL
+17:53:29.826 [JavaFX Application Thread] DEBUG Engine               - Initializing environment variables
+17:53:29.832 [JavaFX Application Thread] DEBUG Engine               - Logging environment variables
+17:53:29.833 [JavaFX Application Thread] DEBUG Engine               - achievements: []
+17:53:29.834 [JavaFX Application Thread] DEBUG Engine               - sceneStack: com.almasb.fxgl.app.Engine@730056f5
+17:53:29.836 [JavaFX Application Thread] DEBUG Engine               - language: ObjectProperty [value: ENGLISH]
+17:53:29.836 [JavaFX Application Thread] DEBUG Engine               - isCloseConfirmation: false
+17:53:29.837 [JavaFX Application Thread] DEBUG Engine               - isProfilingEnabled: false
+17:53:29.838 [JavaFX Application Thread] DEBUG Engine               - soundNotification: core/notification.wav
+17:53:29.839 [JavaFX Application Thread] DEBUG Engine               - devShowBBoxProperty: BooleanProperty [value: false]
+17:53:29.842 [JavaFX Application Thread] DEBUG Engine               - pixelsPerMeter: 50.0
+17:53:29.842 [JavaFX Application Thread] DEBUG Engine               - overlayRoot: Group@28f6c6a5
+17:53:29.843 [JavaFX Application Thread] DEBUG Engine               - appIcon: fxgl_icon.png
+17:53:29.844 [JavaFX Application Thread] DEBUG Engine               - soundMenuBack: menu/back.wav
+17:53:29.845 [JavaFX Application Thread] DEBUG Engine               - isFullScreenAllowed: false
+17:53:29.847 [JavaFX Application Thread] DEBUG Engine               - isIntroEnabled: false
+17:53:29.848 [JavaFX Application Thread] DEBUG Engine               - eventBus: com.almasb.fxgl.event.EventBus@412629bc
+17:53:29.849 [JavaFX Application Thread] DEBUG Engine               - fontMono: lucida_console.ttf
+17:53:29.849 [JavaFX Application Thread] DEBUG Engine               - soundMenuSelect: menu/select.wav
+17:53:29.849 [JavaFX Application Thread] DEBUG Engine               - isWindows: true
+17:53:29.850 [JavaFX Application Thread] DEBUG Engine               - isMobile: false
+17:53:29.851 [JavaFX Application Thread] DEBUG Engine               - height: 1200
+17:53:29.851 [JavaFX Application Thread] DEBUG Engine               - isExperimentalNative: false
+17:53:29.852 [JavaFX Application Thread] DEBUG Engine               - isSingleStep: false
+17:53:29.852 [JavaFX Application Thread] DEBUG Engine               - cSSList: [fxgl_dark.css]
+17:53:29.852 [JavaFX Application Thread] DEBUG Engine               - fontGame: Abel-Regular.ttf
+17:53:29.856 [JavaFX Application Thread] DEBUG Engine               - menuKey: ESCAPE
+17:53:29.858 [JavaFX Application Thread] DEBUG Engine               - devShowPositionProperty: BooleanProperty [value: false]
+17:53:29.858 [JavaFX Application Thread] DEBUG Engine               - versionCheckDays: 7
+17:53:29.859 [JavaFX Application Thread] DEBUG Engine               - masterTimer: com.almasb.fxgl.time.Timer@30606893
+17:53:29.859 [JavaFX Application Thread] DEBUG Engine               - configClass: Optional.empty
+17:53:29.859 [JavaFX Application Thread] DEBUG Engine               - isFullScreenFromStart: false
+17:53:29.860 [JavaFX Application Thread] DEBUG Engine               - version: 0.1
+17:53:29.860 [JavaFX Application Thread] DEBUG Engine               - fullScreen: BooleanProperty [value: false]
+17:53:29.860 [JavaFX Application Thread] DEBUG Engine               - randomSeed: -1
+17:53:29.860 [JavaFX Application Thread] DEBUG Engine               - dialogFactory: com.almasb.fxgl.ui.FXGLDialogFactory@322c8b8b
+17:53:29.860 [JavaFX Application Thread] DEBUG Engine               - applicationMode: DEVELOPER
+17:53:29.861 [JavaFX Application Thread] DEBUG Engine               - isMac: false
+17:53:29.861 [JavaFX Application Thread] DEBUG Engine               - urlGoogleForms: https://goo.gl/forms/6wrMnOBxTE1fEpOy2
+17:53:29.861 [JavaFX Application Thread] DEBUG Engine               - isMenuEnabled: false
+17:53:29.861 [JavaFX Application Thread] DEBUG Engine               - urlPOM: https://raw.githubusercontent.com/AlmasB/FXGL/master/pom.xml
+17:53:29.862 [JavaFX Application Thread] DEBUG Engine               - profileName: user.profile
+17:53:29.864 [JavaFX Application Thread] DEBUG Engine               - notificationViewClass: class com.almasb.fxgl.notification.view.XboxNotificationView
+17:53:29.864 [JavaFX Application Thread] DEBUG Engine               - devSensorColorProperty: ObjectProperty [value: 0xffff00ff]
+17:53:29.865 [JavaFX Application Thread] DEBUG Engine               - sceneFactory: com.almasb.fxgl.app.SceneFactory@2cf1a085
+17:53:29.865 [JavaFX Application Thread] DEBUG Engine               - dataFileExt: .dat
+17:53:29.865 [JavaFX Application Thread] DEBUG Engine               - stageStyle: DECORATED
+17:53:29.866 [JavaFX Application Thread] DEBUG Engine               - isManualResizeEnabled: true
+17:53:29.866 [JavaFX Application Thread] DEBUG Engine               - title: GOLD MINERS
+17:53:29.866 [JavaFX Application Thread] DEBUG Engine               - platform: WINDOWS
+17:53:29.866 [JavaFX Application Thread] DEBUG Engine               - devBBoxColorProperty: ObjectProperty [value: 0xff0000ff]
+17:53:29.867 [JavaFX Application Thread] DEBUG Engine               - isDesktop: true
+17:53:29.867 [JavaFX Application Thread] DEBUG Engine               - credits: []
+17:53:29.867 [JavaFX Application Thread] DEBUG Engine               - globalMusicVolumeProperty: DoubleProperty [value: 0.5]
+17:53:29.867 [JavaFX Application Thread] DEBUG Engine               - uIFactory: com.almasb.fxgl.ui.FXGLUIFactory@5cea076e
+17:53:29.867 [JavaFX Application Thread] DEBUG Engine               - isPreserveResizeRatio: true
+17:53:29.868 [JavaFX Application Thread] DEBUG Engine               - fontText: Courier-Prime.ttf
+17:53:29.868 [JavaFX Application Thread] DEBUG Engine               - isExperimentalTiledLargeMap: false
+17:53:29.868 [JavaFX Application Thread] DEBUG Engine               - secondsIn24h: 60
+17:53:29.868 [JavaFX Application Thread] DEBUG Engine               - runtimeInfo: RuntimeInfo(platform=WINDOWS, version=11.7, build=05.01.2020 09.37)
+17:53:29.869 [JavaFX Application Thread] DEBUG Engine               - isLinux: false
+17:53:29.869 [JavaFX Application Thread] DEBUG Engine               - soundMenuPress: menu/press.wav
+17:53:29.869 [JavaFX Application Thread] DEBUG Engine               - urlGithub: https://github.com/AlmasB/FXGL
+17:53:29.869 [JavaFX Application Thread] DEBUG Engine               - profileDir: profiles/
+17:53:29.869 [JavaFX Application Thread] DEBUG Engine               - globalSoundVolumeProperty: DoubleProperty [value: 0.5]
+17:53:29.869 [JavaFX Application Thread] DEBUG Engine               - isDeveloperMenuEnabled: false
+17:53:29.870 [JavaFX Application Thread] DEBUG Engine               - isBrowser: false
+17:53:29.870 [JavaFX Application Thread] DEBUG Engine               - globalSoundVolume: 0.5
+17:53:29.870 [JavaFX Application Thread] DEBUG Engine               - urlLeaderboard: http://fxgl-top.herokuapp.com/
+17:53:29.870 [JavaFX Application Thread] DEBUG Engine               - saveDir: saves/
+17:53:29.871 [JavaFX Application Thread] DEBUG Engine               - engineServices: [class com.almasb.fxgl.audio.AudioPlayer, class com.almasb.fxgl.notification.impl.NotificationServiceProvider, class com.almasb.fxgl.achievement.AchievementManager, class com.almasb.fxgl.cutscene.CutsceneService, class com.almasb.fxgl.minigames.MiniGameService]
+17:53:29.871 [JavaFX Application Thread] DEBUG Engine               - globalMusicVolume: 0.5
+17:53:29.871 [JavaFX Application Thread] DEBUG Engine               - width: 1200
+17:53:29.871 [JavaFX Application Thread] DEBUG Engine               - saveFileExt: .sav
+17:53:29.871 [JavaFX Application Thread] DEBUG Engine               - isAndroid: false
+17:53:29.872 [JavaFX Application Thread] DEBUG Engine               - fontUI: VarelaRound-Regular.ttf
+17:53:29.872 [JavaFX Application Thread] DEBUG Engine               - enabledMenuItems: []
+17:53:29.872 [JavaFX Application Thread] DEBUG Engine               - isIOS: false
+17:53:29.876 [JavaFX Application Thread] DEBUG Engine               - Adding new engine service: class com.almasb.fxgl.audio.AudioPlayer
+17:53:29.878 [JavaFX Application Thread] DEBUG Engine               - Adding new engine service: class com.almasb.fxgl.notification.impl.NotificationServiceProvider
+17:53:29.879 [JavaFX Application Thread] DEBUG Engine               - Adding new engine service: class com.almasb.fxgl.achievement.AchievementManager
+17:53:29.881 [JavaFX Application Thread] DEBUG Engine               - Adding new engine service: class com.almasb.fxgl.cutscene.CutsceneService
+17:53:29.881 [JavaFX Application Thread] DEBUG Engine               - Adding new engine service: class com.almasb.fxgl.minigames.MiniGameService
+17:53:29.886 [JavaFX Application Thread] DEBUG Engine               - Loading localizations
+17:53:29.891 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from file system: /assets/properties/languages/english.properties
+17:53:29.896 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from file system: /assets/properties/languages/french.properties
+17:53:29.900 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from file system: /assets/properties/languages/german.properties
+17:53:29.902 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from file system: /assets/properties/languages/russian.properties
+17:53:29.905 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from file system: /assets/properties/languages/hungarian.properties
+17:53:29.908 [JavaFX Application Thread] DEBUG Engine               - Registering font factories
+17:53:29.909 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from file system: /assets/ui/fonts/VarelaRound-Regular.ttf
+17:53:30.804 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from file system: /assets/ui/fonts/Abel-Regular.ttf
+17:53:30.820 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from file system: /assets/ui/fonts/lucida_console.ttf
+17:53:30.849 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from file system: /assets/ui/fonts/Courier-Prime.ttf
+17:53:30.873 [JavaFX Application Thread] DEBUG Engine               - Setting UI factory
+17:53:31.244 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from file system: /assets/textures/fxgl_logo.png
+17:53:31.397 [JavaFX Application Thread] DEBUG MainWindow           - Creating a JavaFX scene
+17:53:31.398 [JavaFX Application Thread] DEBUG MainWindow           - Target size > screen size
+17:53:31.503 [JavaFX Application Thread] DEBUG MainWindow           - Target settings size: 1200.0 x 1200.0
+17:53:31.504 [JavaFX Application Thread] DEBUG MainWindow           - Scaled scene size:    713.0 x 738.0
+17:53:31.504 [JavaFX Application Thread] DEBUG MainWindow           - Scaled ratio: (0.5941666666666666, 0.615)
+17:53:31.506 [JavaFX Application Thread] DEBUG MainWindow           - Set initial scene to FXGLStartupScene
+17:53:31.521 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from file system: /assets/textures/fxgl_icon.png
+17:53:31.546 [JavaFX Application Thread] DEBUG Engine               - Applying CSS: fxgl_dark.css
+17:53:31.547 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from file system: /assets/ui/css/fxgl_dark.css
+17:53:31.553 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from file system: /assets/ui/cursors/fxgl_default.png
+17:53:31.556 [JavaFX Application Thread] DEBUG MainWindow           - Opening main window
+17:53:31.851 [JavaFX Application Thread] DEBUG MainWindow           - Window border size: (16.0, 39.0)
+17:53:31.851 [JavaFX Application Thread] DEBUG MainWindow           - Scaled size: 713.0 x 738.0
+17:53:31.851 [JavaFX Application Thread] DEBUG MainWindow           - Scaled ratio: (0.5941666666666666, 0.5941666666666666)
+17:53:31.851 [JavaFX Application Thread] DEBUG MainWindow           - Scene size: 713.0 x 738.0
+17:53:31.851 [JavaFX Application Thread] DEBUG MainWindow           - Stage size: 729.0 x 777.0
+17:53:31.952 [FXGL Background Thread 1 ] DEBUG FS                   - Loaded FSServiceImpl
+17:53:31.952 [FXGL Background Thread 1 ] DEBUG Engine               - Loading FXGL system data
+17:53:31.961 [FXGL Background Thread 1 ] DEBUG FSServiceImpl        - Reading from: C:\Users\ABDERRAHIM\Desktop\GoldMinerSimulation\system\fxgl.bundle
+17:53:31.977 [FXGL Background Thread 1 ] DEBUG Engine               - Bundle FXGL: {}
+17:53:31.977 [FXGL Background Thread 1 ] DEBUG Engine               - Initializing application scenes
+17:53:32.054 [FXGL Background Thread 1 ] DEBUG GameWorld            - Game world initialized
+17:53:32.179 [FXGL Background Thread 1 ] DEBUG PhysicsWorld         - Physics world initialized: appHeight=1200, physics.ppm=50,0
+17:53:32.181 [FXGL Background Thread 1 ] DEBUG GameScene            - Game scene initialized: 1200x1200
+17:53:32.253 [FXGL Background Thread 1 ] DEBUG Input                - Registered new binding: Resume - Esc
+17:53:32.254 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from file system: /assets/textures/pause_menu_bg.png
+17:53:32.295 [FXGL Background Thread 1 ] DEBUG Input                - Registered new binding: Pause - Esc
+17:53:32.295 [FXGL Background Thread 1 ] DEBUG Engine               - Application scenes initialized
+17:53:32.300 [JavaFX Application Thread] DEBUG Engine               - Running preInit()
+17:53:32.302 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Screenshot - P
+17:53:32.302 [JavaFX Application Thread] DEBUG Input                - Registered new binding: System info dump - CTRL+9
+17:53:32.303 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Restart - CTRL+R
+17:53:32.303 [JavaFX Application Thread] DEBUG Engine               - generateDefaultProfile()
+17:53:32.303 [JavaFX Application Thread] DEBUG Engine               - Creating default profile
+17:53:32.303 [JavaFX Application Thread] DEBUG EventBus             - Firing event: SaveEvent
+17:53:32.323 [JavaFX Application Thread] INFO  Engine               - FXGL initialization took: 2,436 sec
+17:53:32.323 [JavaFX Application Thread] DEBUG LoopRunner           - Starting loop
+17:53:32.343 [JavaFX Application Thread] DEBUG FXGLStartupScene     - STARTUP
+17:53:32.343 [JavaFX Application Thread] DEBUG Engine               - Starting new game
+17:53:32.359 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+17:53:32.360 [FXGL Background Thread 1 ] DEBUG InitAppTask          - Clearing previous game
+17:53:32.360 [FXGL Background Thread 1 ] DEBUG GameWorld            - Clearing game world
+17:53:32.360 [FXGL Background Thread 1 ] DEBUG PhysicsWorld         - Clearing physics world
+17:53:32.360 [FXGL Background Thread 1 ] DEBUG GameScene            - Clearing game scene
+17:53:32.360 [FXGL Background Thread 1 ] DEBUG InitAppTask          - Initializing Game
+17:53:32.382 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from file system: /assets/textures/miner.png
+17:53:32.392 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from file system: /assets/textures/obstacle.png
+17:53:32.397 [JavaFX Application Thread] DEBUG Engine               - Removing overlay from FXGLStartupScene and adding to LoadingScene
+17:53:32.397 [JavaFX Application Thread] DEBUG MainWindow           - FXGLStartupScene -> LoadingScene
+17:53:32.416 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from file system: /assets/textures/gold.png
+17:53:32.420 [FXGL Background Thread 1 ] DEBUG InitAppTask          - Initializing Physics
+17:53:32.420 [FXGL Background Thread 1 ] DEBUG InitAppTask          - Initializing UI
+17:53:32.421 [FXGL Background Thread 1 ] DEBUG InitAppTask          - Initialization Complete
+17:53:32.421 [FXGL Background Thread 1 ] INFO  InitAppTask          - Game initialization took: 0,061 sec
+17:53:32.497 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+17:53:32.515 [JavaFX Application Thread] DEBUG Engine               - Removing overlay from LoadingScene and adding to GameScene
+17:53:32.515 [JavaFX Application Thread] DEBUG MainWindow           - LoadingScene -> GameScene
+17:58:37.031 [JavaFX Application Thread] DEBUG Engine               - Exiting FXGL
+17:58:37.032 [JavaFX Application Thread] DEBUG Engine               - Shutting down background threads
+17:58:37.032 [JavaFX Application Thread] DEBUG Engine               - Saving FXGL system data
+17:58:37.037 [JavaFX Application Thread] DEBUG FSServiceImpl        - Writing to: C:\Users\ABDERRAHIM\Desktop\GoldMinerSimulation\system\fxgl.bundle
+17:58:37.041 [JavaFX Application Thread] DEBUG Engine               - Closing logger and exiting JavaFX
