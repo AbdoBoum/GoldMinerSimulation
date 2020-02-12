@@ -7,7 +7,8 @@ import lombok.Setter;
 import static Simulator.Event.*;
 
 /**
- * Une instance de cette classe permet de faire simuler une environment
+ * Instance of this class allow to lunch some simulation
+ * the role of the class is to be a facade of simulations
  */
 @Getter
 @Setter
@@ -19,6 +20,10 @@ public class StartSimulationFacade {
         field = new MiningField();
     }
 
+    /**
+     * Method allow to simulate a normal event
+     * @return void
+     */
     public static void startSimulation() {
         var env = new StartSimulationFacade();
         var field = env.getField();
@@ -30,7 +35,7 @@ public class StartSimulationFacade {
             }
 
             for (var i = 0; i < leader.getMiners().size(); i++) {
-                if (leader.getMinerByIndex(i).getPosition().equals(leader.getMinerByIndex(i).getDeposite()) &&
+                if (leader.getMinerByIndex(i).getPosition().equals(leader.getMinerByIndex(i).getDeposit()) &&
                         !leader.getMinerByIndex(i).isFree()) {
                     dropGold(leader.getMinerByIndex(i), field);
                 }
@@ -40,6 +45,10 @@ public class StartSimulationFacade {
         printScores(leader);
     }
 
+    /**
+     * Method that simulate event with one Miner
+     * @return void
+     */
     public static void simulateOneMiner() {
         var env = new StartSimulationFacade();
         var field = env.getField();
@@ -57,6 +66,11 @@ public class StartSimulationFacade {
         System.out.println("Score: " + leader.getMinerByIndex(0).getScore());
     }
 
+    /**
+     * Print the scores of the miners
+     * @param leader the leader of miners
+     * @return void
+     */
     private static void printScores(Leader leader) {
         for (var i = 0; i < 4; i++)
             System.out.println("Score: " + leader.getMinerByIndex(i).getScore()

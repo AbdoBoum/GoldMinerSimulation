@@ -8,23 +8,47 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+/**
+ * This class represent the agent miner
+ * @author Boumahdi
+ */
 @Getter @Setter @AllArgsConstructor
 public class Miner implements Agent {
-
+    /**
+     * The identifier of the miner agent
+     */
     private String id;
+    /**
+     * To represent the availability of agent
+     */
     private boolean free;
+    /**
+     * Position of miner
+     */
     private Position position;
+    /**
+     * The Score
+     */
     private int score;
+    /**
+     * To represent the winner
+     */
     private boolean winner;
+    /**
+     * the position of the destination
+     */
     private Position destination;
-    private Position deposite;
+    /**
+     * the position of the deposit
+     */
+    private Position deposit;
 
     public Miner(){
         this(UUID.randomUUID().toString(), true, new Position(), 0, false, new Position(), new Position());
     }
 
-    public Miner(Position deposite) {
-        this(UUID.randomUUID().toString(), true, new Position(), 0, false, new Position(),deposite);
+    public Miner(Position deposit) {
+        this(UUID.randomUUID().toString(), true, new Position(), 0, false, new Position(), deposit);
     }
 
     @Override
@@ -46,6 +70,10 @@ public class Miner implements Agent {
         }
     }
 
+    /**
+     * Generate the description of the miner
+     * @return String that describe the miner
+     */
     @Override
     public String toString() {
         return "---> Miner: " + this.id + " \n---> Position: " + position.toString();

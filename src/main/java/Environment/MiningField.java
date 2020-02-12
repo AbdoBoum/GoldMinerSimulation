@@ -2,7 +2,6 @@ package Environment;
 
 import Agents.Leader;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.Arrays;
@@ -10,6 +9,9 @@ import java.util.stream.IntStream;
 
 import static Simulator.RandomGenerator.generateRandom;
 
+/**
+ * The class Represent the Mining field where the agents will mining the golds
+ */
 public class MiningField {
 
     public static final int MAP_HEIGHT = 20;
@@ -17,12 +19,24 @@ public class MiningField {
     public static final int DEFAULT_OBSTACLES = 15;
     public static final int DEFAULT_GOLD_PIECES = 25;
 
+    /**
+     * Represent the number of gold pieces in the field
+     */
     @Setter @Getter
     private int goldPieces;
+    /**
+     * Number of obstacles in the mining field
+     */
     @Getter @Setter
     private int obstacles;
+    /**
+     * Table that represent the field map
+     */
     @Getter @Setter
     private char[][] map;
+    /**
+     * The leader of the mining field
+     */
     @Getter
     private Leader owner;
 
@@ -38,6 +52,9 @@ public class MiningField {
         initMiningField();
     }
 
+    /**
+     * Initialise the mining field
+     */
     private void initMiningField() {
         fillMiningField();
         addMiners();
@@ -45,6 +62,10 @@ public class MiningField {
         addObstacles();
     }
 
+    /**
+     * fill the mining field
+     * @return void
+     */
     private void fillMiningField() {
         for (var i = 0; i < MAP_HEIGHT; i++) {
             Arrays.fill(this.map[i], '*');
@@ -55,6 +76,9 @@ public class MiningField {
         map[MAP_HEIGHT-1][MAP_WIDTH-1] = 'D';
     }
 
+    /**
+     * Add miners the mining field
+     */
     private void addMiners() {
         for (int i = 0; i < owner.getMiners().size(); i++) {
             var row = owner.getMinerByIndex(i).getPosition().getRow();
@@ -63,6 +87,10 @@ public class MiningField {
         }
     }
 
+    /**
+     * Add golds in the mining field
+     * @return void
+     */
     private void addGold() {
         var i = 0;
         while (i < this.goldPieces) {
@@ -74,6 +102,10 @@ public class MiningField {
         }
     }
 
+    /**
+     * Add obstacles in the mining field
+     * @return void
+     */
     private void addObstacles() {
         var i = 0;
         while (i < this.obstacles) {
@@ -85,24 +117,49 @@ public class MiningField {
         }
     }
 
+    /**
+     * Check if a position is free
+     * @param position the position to check
+     * @return boolean describe a position
+     */
     public boolean isFreePosition(Position position) {
         return this.getMap()[position.getRow()][position.getCol()] == '*';
     }
 
+    /**
+     * Check if a position contain a gold
+     * @param position the position to verify
+     * @return boolean describe founding of gold
+     */
     public boolean isGold(Position position) { return this.getMap()[position.getRow()][position.getCol()] == 'o'; }
 
+    /**
+     * Take a gold from a position
+     */
     public void freePositionFromGold() {
         this.goldPieces--;
     }
 
+    /**
+     * Get free a position
+     * @param position position to get free
+     */
     public void freePosition(Position position) {
         this.getMap()[position.getRow()][position.getCol()] = '*';
     }
 
+    /**
+     * Set the miner in a position
+     * @param position the position
+     */
     public void setMinerInPosition(Position position) {
         this.getMap()[position.getRow()][position.getCol()] = 'M';
     }
 
+    /**
+     * Describe the mining field
+     * @return string of description
+     */
     @Override
     public String toString() {
         var builder = new StringBuilder();
