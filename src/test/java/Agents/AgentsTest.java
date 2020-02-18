@@ -1,6 +1,5 @@
 package Agents;
 
-import Environment.MiningField;
 import Environment.Position;
 import org.junit.Test;
 
@@ -41,7 +40,7 @@ public class AgentsTest {
         var leader = new Leader();
         var miner = leader.getMinerByIndex(0);
         leader.updateScore(miner);
-        assertEquals(leader.getTeamMaxScore(), 1);
+        assertEquals(1, leader.getTeamMaxScore());
         assertEquals(1, miner.getScore());
         for (var i = 0; i < 4; i++) {
             if (leader.getMinerByIndex(i).equals(miner)) assertThat(leader.getMinerByIndex(i).isWinner(), equalTo(true));

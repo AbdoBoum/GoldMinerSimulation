@@ -1,3 +1,5 @@
+package main;
+
 import Agents.Leader;
 import Environment.MiningField;
 import Environment.Position;

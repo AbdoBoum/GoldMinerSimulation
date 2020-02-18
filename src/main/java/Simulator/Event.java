@@ -20,6 +20,8 @@ import static Environment.MiningField.MAP_WIDTH;
 
 public class Event {
 
+    private Event() {}
+
     public static List<Position> generateRandomPositions() {
         var positions = new ArrayList<Position>();
         for (var i = 0; i < NUM_MINERS; i++) {

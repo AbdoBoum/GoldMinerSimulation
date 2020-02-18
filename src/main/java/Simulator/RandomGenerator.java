@@ -14,13 +14,9 @@ public class RandomGenerator {
         mersenneTwister = new MersenneTwister();
     }
 
-    public static RandomGenerator getInstance() {
+    public static synchronized RandomGenerator getInstance() {
         if (instance == null) {
-            synchronized (RandomGenerator.class) {
-                if (instance == null) {
                     instance = new RandomGenerator();
-                }
-            }
         }
         return instance;
     }

@@ -12,9 +12,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static Simulator.Event.*;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.*;
+import java.util.List;
+
+import static Simulator.Event.dropGold;
+import static Simulator.Event.searchInPosition;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EventsTest {
@@ -48,12 +51,12 @@ public class EventsTest {
     @Test
     public void testMock() {
         Mockito.when(owner.getMinerByIndex(0)).thenReturn(miner);
+        Mockito.when(owner.getDiposites()).thenReturn(List.of(new Position(0, 0)));
         searchInPosition(miner, miningField, position);
         assertFalse(miner.isFree());
         dropGold(miner, miningField);
         assertTrue(miner.isFree());
     }
-
 
 
 }

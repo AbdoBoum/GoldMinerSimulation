@@ -9,7 +9,6 @@ public interface Agent {
         GOLD_POSITION
     }
 
-    //TODO: add strategy pattern on those behaviors
     void broadcast(Type type, Object content);
     void send(Type type, Object... content);
 }
