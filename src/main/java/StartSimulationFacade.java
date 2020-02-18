@@ -16,6 +16,9 @@ public class StartSimulationFacade {
 
     private MiningField field;
 
+    /**
+     * Default Constructor who initiate the mining field
+     */
     public StartSimulationFacade() {
         field = new MiningField();
     }

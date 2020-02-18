@@ -39,6 +39,9 @@ public class Miner implements Agent {
      */
     private Position destination;
 
+    /**
+     * default constructor of miner
+     */
     public Miner(){
         this(UUID.randomUUID().toString(), true, new Position(), 0, false, new Position());
     }

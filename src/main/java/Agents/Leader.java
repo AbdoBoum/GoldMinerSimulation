@@ -38,6 +38,9 @@ public class Leader implements Agent{
     @Getter
     private List<Position> diposites;
 
+    /**
+     * the default constructor
+     */
     public Leader() {
         teamMaxScore = 0;
         createDiposites();
@@ -94,6 +97,11 @@ public class Leader implements Agent{
         return (Miner) this.miners.get(index);
     }
 
+    /**
+     * Function used to get the index of the miner agent
+     * @param miner the miner
+     * @return the index of the miner
+     */
     public int getMinerIndex(Miner miner) {
         return miners.indexOf(miner);
     }

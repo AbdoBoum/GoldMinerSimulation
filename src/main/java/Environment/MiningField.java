@@ -40,10 +40,19 @@ public class MiningField {
     @Getter
     private Leader owner;
 
+    /**
+     * Default constructor
+     */
     public MiningField() {
         this(DEFAULT_GOLD_PIECES, DEFAULT_OBSTACLES, new Leader());
     }
 
+    /**
+     * Constructor who take number of golds, obstacles and the owner agent
+     * @param goldPieces number of golds
+     * @param obstacles number of obstacles
+     * @param owner reference of the owner agent
+     */
     public MiningField(int goldPieces, int obstacles, Leader owner) {
         this.obstacles = obstacles;
         this.goldPieces = goldPieces;
