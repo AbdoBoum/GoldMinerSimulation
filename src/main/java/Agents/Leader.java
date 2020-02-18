@@ -16,16 +16,31 @@ import static Environment.MiningField.MAP_WIDTH;
 import static Simulator.Event.searchInPosition;
 import static Simulator.RandomGenerator.generateRandom;
 
-public class Leader implements Agent {
+/**
+ * this class implement Agent interface, the class represent
+ * the Leader agent who is the responsible of the mining field
+ * @author Boumahdi, El haddaoui
+ */
+public class Leader implements Agent{
 
     public static final int NUM_MINERS = 4;
-
+    /**
+     * Collection of miners that has the current leader
+     */
     @Getter private List<Agent> miners;
-
+    /**
+     * Represent the team maximum score
+     */
     @Getter private int teamMaxScore;
+    /**
+     * Positions of the deposit
+     */
+    @Getter
+    private List<Position> diposites;
 
-    @Getter private List<Position> diposites;
-
+    /**
+     * the default constructor
+     */
     public Leader() {
         teamMaxScore = 0;
         createDiposites();
@@ -33,7 +48,11 @@ public class Leader implements Agent {
         generateMinersInitialPosition();
     }
 
-    private void createDiposites() {
+    /**
+     * Create the deposits for a mining field
+     * @return void
+     */
+    private void createDiposites(){
         diposites = new ArrayList<>();
         diposites.add(new Position());
         diposites.add(new Position(MAP_HEIGHT - 1, 0));
@@ -41,6 +60,10 @@ public class Leader implements Agent {
         diposites.add(new Position(MAP_HEIGHT - 1, MAP_WIDTH - 1));
     }
 
+    /**
+     * Create agents miners for the current leader
+     * @return void
+     */
     private void createMiners() {
         miners = new ArrayList<>();
         for (int i = 0; i < NUM_MINERS; i++) {
@@ -48,6 +71,10 @@ public class Leader implements Agent {
         }
     }
 
+    /**
+     * Generate positions for the miners
+     * @return void
+     */
     private void generateMinersInitialPosition() {
         Set<Position> positions = new HashSet<>();
         int i = 0;
@@ -61,14 +88,29 @@ public class Leader implements Agent {
 
     }
 
+    /**
+     * Used to get the agent miner by his index
+     * @param index the index
+     * @return miner object
+     */
     public Miner getMinerByIndex(int index) {
         return (Miner) this.miners.get(index);
     }
 
+    /**
+     * Function used to get the index of the miner agent
+     * @param miner the miner
+     * @return the index of the miner
+     */
     public int getMinerIndex(Miner miner) {
         return miners.indexOf(miner);
     }
 
+    /**
+     * Update the score of a specified miner
+     * @param miner miner object
+     * @return void
+     */
     public void updateScore(Miner miner) {
         miner.setScore(miner.getScore() + 1);
         if (miner.getScore() > teamMaxScore) {
@@ -88,6 +130,11 @@ public class Leader implements Agent {
         }
     }
 
+    /**
+     * Update the miner winner
+     * @param winner miner Object
+     * @return void
+     */
     private void updateWinner(Miner winner) {
         for (int i = 0; i < NUM_MINERS; i++) {
             if (getMinerByIndex(i).equals(winner))
@@ -112,6 +159,12 @@ public class Leader implements Agent {
         }
     }
 
+    /**
+     * Affect to miner a position of gold to search
+     * @param field Mining field position
+     * @param goldPosition Position of a gold
+     * @return void
+     */
     public void affectMinerToGold(MiningField field, Position goldPosition) {
         if (this.areAllMinersBusy()) return;
         int random = generateRandom(NUM_MINERS);
@@ -122,6 +175,10 @@ public class Leader implements Agent {
         }
     }
 
+    /**
+     * Lock if the miners are busy
+     * @return boolean
+     */
     public boolean areAllMinersBusy() {
         for (int i = 0; i < miners.size(); i++) {
             if (getMinerByIndex(i).isFree()) return false;
