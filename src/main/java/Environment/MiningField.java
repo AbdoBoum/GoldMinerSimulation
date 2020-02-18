@@ -73,7 +73,6 @@ public class MiningField {
 
     /**
      * fill the mining field
-     * @return void
      */
     private void fillMiningField() {
         for (var i = 0; i < MAP_HEIGHT; i++) {
@@ -98,7 +97,6 @@ public class MiningField {
 
     /**
      * Add golds in the mining field
-     * @return void
      */
     private void addGold() {
         var i = 0;
@@ -113,7 +111,6 @@ public class MiningField {
 
     /**
      * Add obstacles in the mining field
-     * @return void
      */
     private void addObstacles() {
         var i = 0;

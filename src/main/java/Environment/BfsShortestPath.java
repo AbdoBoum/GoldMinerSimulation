@@ -99,7 +99,6 @@ public class BfsShortestPath {
 
     /**
      * Function init initialise the members of the class
-     * @return void
      */
 
     private void init() {

@@ -25,7 +25,6 @@ public class StartSimulationFacade {
 
     /**
      * Method allow to simulate a normal event
-     * @return void
      */
     public static void startSimulation() {
         var env = new StartSimulationFacade();
@@ -50,7 +49,6 @@ public class StartSimulationFacade {
 
     /**
      * Method that simulate event with one Miner
-     * @return void
      */
     public static void simulateOneMiner() {
         var env = new StartSimulationFacade();
@@ -72,7 +70,6 @@ public class StartSimulationFacade {
     /**
      * Print the scores of the miners
      * @param leader the leader of miners
-     * @return void
      */
     private static void printScores(Leader leader) {
         for (var i = 0; i < 4; i++)
