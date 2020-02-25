@@ -10,9 +10,12 @@ import java.util.UUID;
 
 /**
  * This class represent the agent miner
+ *
  * @author Boumahdi
  */
-@Getter @Setter @AllArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
 public class Miner implements Agent {
     /**
      * The identifier of the miner agent
@@ -42,7 +45,7 @@ public class Miner implements Agent {
     /**
      * default constructor of miner
      */
-    public Miner(){
+    public Miner() {
         this(UUID.randomUUID().toString(), true, new Position(), 0, false, new Position());
     }
 
@@ -53,20 +56,21 @@ public class Miner implements Agent {
 
     @Override
     public void send(Type type, Object... content) {
-        MiningField field = (MiningField)content[0];
-        switch(type) {
+        MiningField field = (MiningField) content[0];
+        switch (type) {
             case ANNOUNCE_WINNER:
                 break;
             case GOLD_DROPPED:
                 field.getOwner().updateScore(this);
                 break;
             case GOLD_FOUND:
-                field.getOwner().affectMinerToGold(field ,this.getPosition());
+                field.getOwner().affectMinerToGold(field, this.getPosition());
         }
     }
 
     /**
      * Generate the description of the miner
+     *
      * @return String that describe the miner
      */
     @Override

@@ -3,7 +3,7 @@ package Environment;
 import java.util.*;
 
 /**
- * this class calculate the shortest paths in a mining field map based on BFS algorithm
+ * this class calculate the shortest paths between two positions based on BFS algorithm
  */
 public class BfsShortestPath {
     /**
