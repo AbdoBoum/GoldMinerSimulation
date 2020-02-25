@@ -50,7 +50,6 @@ public class Leader implements Agent{
 
     /**
      * Create the deposits for a mining field
-     * @return void
      */
     private void createDiposites(){
         diposites = new ArrayList<>();
@@ -62,7 +61,6 @@ public class Leader implements Agent{
 
     /**
      * Create agents miners for the current leader
-     * @return void
      */
     private void createMiners() {
         miners = new ArrayList<>();
@@ -73,7 +71,6 @@ public class Leader implements Agent{
 
     /**
      * Generate positions for the miners
-     * @return void
      */
     private void generateMinersInitialPosition() {
         Set<Position> positions = new HashSet<>();
@@ -109,7 +106,6 @@ public class Leader implements Agent{
     /**
      * Update the score of a specified miner
      * @param miner miner object
-     * @return void
      */
     public void updateScore(Miner miner) {
         miner.setScore(miner.getScore() + 1);
@@ -133,7 +129,6 @@ public class Leader implements Agent{
     /**
      * Update the miner winner
      * @param winner miner Object
-     * @return void
      */
     private void updateWinner(Miner winner) {
         for (int i = 0; i < NUM_MINERS; i++) {
@@ -163,7 +158,6 @@ public class Leader implements Agent{
      * Affect to miner a position of gold to search
      * @param field Mining field position
      * @param goldPosition Position of a gold
-     * @return void
      */
     public void affectMinerToGold(MiningField field, Position goldPosition) {
         if (this.areAllMinersBusy()) return;
