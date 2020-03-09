@@ -1,4 +1,4 @@
-package Environment;
+package environment;
 
 import org.junit.Test;
 

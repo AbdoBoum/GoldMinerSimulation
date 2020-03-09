@@ -1,12 +1,13 @@
 package main;
 
-import Agents.Leader;
-import Environment.MiningField;
-import Environment.Position;
+import agents.Leader;
+import environment.MiningField;
+import environment.Position;
 import lombok.Getter;
 import lombok.Setter;
 
-import static Simulator.Event.*;
+import static main.Main.LOGGER;
+import static simulator.Event.*;
 
 /**
  * Instance of this class allow to lunch some simulation
@@ -45,7 +46,7 @@ public class StartSimulationFacade {
                 }
             }
         }
-        System.out.println("Gold: " + field.getGoldPieces());
+        LOGGER.info("Remaining Gold: " + field.getGoldPieces());
         printScores(leader);
     }
 
@@ -65,8 +66,8 @@ public class StartSimulationFacade {
             }
 
         }
-        System.out.println("Gold: " + field.getGoldPieces());
-        System.out.println("Score: " + leader.getMinerByIndex(0).getScore());
+        LOGGER.info("Remaining Gold: " + field.getGoldPieces());
+        LOGGER.info("Score: " + leader.getMinerByIndex(0).getScore());
     }
 
     /**
@@ -75,7 +76,7 @@ public class StartSimulationFacade {
      */
     private static void printScores(Leader leader) {
         for (var i = 0; i < 4; i++)
-            System.out.println("Score: " + leader.getMinerByIndex(i).getScore()
+            LOGGER.info("Score: " + leader.getMinerByIndex(i).getScore()
                     + " Winner: " + leader.getMinerByIndex(i).isWinner());
     }
 

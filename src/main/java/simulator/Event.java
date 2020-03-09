@@ -1,23 +1,26 @@
-package Simulator;
+package simulator;
 
-import Agents.Miner;
-import Environment.MiningField;
-import Environment.Position;
+import agents.Miner;
+import environment.MiningField;
+import environment.Position;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static Agents.Agent.Type.GOLD_DROPPED;
-import static Agents.Agent.Type.GOLD_FOUND;
-import static Agents.Leader.NUM_MINERS;
-import static Environment.BfsShortestPath.getPath;
-import static Environment.MiningField.MAP_HEIGHT;
-import static Environment.MiningField.MAP_WIDTH;
+import static agents.Agent.Type.GOLD_DROPPED;
+import static agents.Agent.Type.GOLD_FOUND;
+import static agents.Leader.NUM_MINERS;
+import static environment.BfsShortestPath.getPath;
+import static environment.MiningField.MAP_HEIGHT;
+import static environment.MiningField.MAP_WIDTH;
+import static main.Main.LOGGER;
 
 /**
  * The class deal with the events that happen in the environment and the agents
  */
 public class Event {
+
+    private Event(){}
 
     /**
      * Create collection of positions in the fields
@@ -55,8 +58,8 @@ public class Event {
         }
         var path = getPath(miner.getPosition(), destination,field.getMap());
         for (var i = 1; i < path.size(); i++) {
-            System.out.println(miner.getId() + " " + miner.getPosition());
-            System.out.println(field.toString());
+            LOGGER.info(miner.getId() + " is going to: " + miner.getPosition());
+            LOGGER.info(field.toString());
             field.freePosition(miner.getPosition());
             miner.setPosition(path.get(i));
             if (field.isGold(miner.getPosition())) {
@@ -67,7 +70,6 @@ public class Event {
                 field.setMinerInPosition(miner.getPosition());
             }
         }
-        System.out.println("the miner is finish her role"+miner.getId());
     }
 
     /**
@@ -91,21 +93,20 @@ public class Event {
         int index = field.getOwner().getMinerIndex(miner);
         miner.setDestination(field.getOwner().getDiposites().get(index));
         var path = getPath(miner.getPosition(), miner.getDestination(),field.getMap());
-        System.out.println("Back to deposit");
+        LOGGER.info("Back to deposit");
         for (var i = 1; i < path.size(); i++) {
-            System.out.println(miner.getId() + " " + miner.getPosition());
-            System.out.println(field.toString());
+            LOGGER.info(miner.getId() + " " + miner.getPosition());
+            LOGGER.info(field.toString());
             if (!field.isGold(miner.getPosition())) field.freePosition(miner.getPosition());
             miner.setPosition(path.get(i));
             if (field.isGold(miner.getPosition())) {
-                System.out.println("Found gold and I'm busy!!");
+                LOGGER.info("Found gold and I'm busy!!");
                 miner.send(GOLD_FOUND, field);
             } else {
                 field.setMinerInPosition(miner.getPosition());
             }
         }
-        System.out.println(miner.getId() + " " + miner.getPosition());
-        System.out.println(field.toString());
+        LOGGER.info(field.toString());
     }
 
     /**

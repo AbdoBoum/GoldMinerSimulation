@@ -1,7 +1,7 @@
-package Agents;
+package agents;
 
-import Environment.MiningField;
-import Environment.Position;
+import environment.MiningField;
+import environment.Position;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -65,6 +65,9 @@ public class Miner implements Agent {
                 break;
             case GOLD_FOUND:
                 field.getOwner().affectMinerToGold(field, this.getPosition());
+                break;
+            default:
+                throw new IllegalArgumentException();
         }
     }
 

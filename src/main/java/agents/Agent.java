@@ -1,4 +1,4 @@
-package Agents;
+package agents;
 
 /**
  *  the interface contain signature methods used by the agents in the system

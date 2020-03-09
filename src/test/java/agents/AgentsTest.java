@@ -1,6 +1,6 @@
-package Agents;
+package agents;
 
-import Environment.Position;
+import environment.Position;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.equalTo;
