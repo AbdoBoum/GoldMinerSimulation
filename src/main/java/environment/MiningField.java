@@ -1,13 +1,13 @@
-package Environment;
+package environment;
 
-import Agents.Leader;
+import agents.Leader;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-import static Simulator.RandomGenerator.generateRandom;
+import static simulator.RandomGenerator.generateRandom;
 
 /**
  * The class Represent the Mining field where the agents will mining the golds
@@ -168,7 +168,7 @@ public class MiningField {
      */
     @Override
     public String toString() {
-        var builder = new StringBuilder();
+        var builder = new StringBuilder("\n");
         for (var i = 0; i < map.length; i++) {
             var line = map[i];
             IntStream.range(0, line.length)

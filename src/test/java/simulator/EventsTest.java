@@ -1,9 +1,9 @@
-package Simulator;
+package simulator;
 
-import Agents.Leader;
-import Agents.Miner;
-import Environment.MiningField;
-import Environment.Position;
+import agents.Leader;
+import agents.Miner;
+import environment.MiningField;
+import environment.Position;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,8 +14,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.List;
 
-import static Simulator.Event.dropGold;
-import static Simulator.Event.searchInPosition;
+import static simulator.Event.dropGold;
+import static simulator.Event.searchInPosition;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -49,7 +49,7 @@ public class EventsTest {
     }
 
     @Test
-    public void testMock() {
+    public void searchGoldTest() {
         Mockito.when(owner.getMinerByIndex(0)).thenReturn(miner);
         Mockito.when(owner.getDiposites()).thenReturn(List.of(new Position(0, 0)));
         searchInPosition(miner, miningField, position);

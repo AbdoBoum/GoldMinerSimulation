@@ -1,7 +1,7 @@
-package Agents;
+package agents;
 
-import Environment.MiningField;
-import Environment.Position;
+import environment.MiningField;
+import environment.Position;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -9,12 +9,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static Agents.Agent.Type.ANNOUNCE_WINNER;
-import static Agents.Agent.Type.GOLD_POSITION;
-import static Environment.MiningField.MAP_HEIGHT;
-import static Environment.MiningField.MAP_WIDTH;
-import static Simulator.Event.searchInPosition;
-import static Simulator.RandomGenerator.generateRandom;
+import static agents.Agent.Type.ANNOUNCE_WINNER;
+import static agents.Agent.Type.GOLD_POSITION;
+import static environment.MiningField.MAP_HEIGHT;
+import static environment.MiningField.MAP_WIDTH;
+import static simulator.Event.searchInPosition;
+import static simulator.RandomGenerator.generateRandom;
 
 /**
  * this class implement Agent interface, the class represent

@@ -1,4 +1,4 @@
-package Environment;
+package environment;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

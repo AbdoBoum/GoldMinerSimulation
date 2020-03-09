@@ -1,13 +1,12 @@
-package Environment;
+package environment;
 
-import Agents.Leader;
+import agents.Leader;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static Environment.MiningField.DEFAULT_GOLD_PIECES;
-import static Environment.MiningField.DEFAULT_OBSTACLES;
-import static Environment.MiningField.MAP_HEIGHT;
+import static environment.MiningField.DEFAULT_GOLD_PIECES;
+import static environment.MiningField.DEFAULT_OBSTACLES;
+import static environment.MiningField.MAP_HEIGHT;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.*;
 
